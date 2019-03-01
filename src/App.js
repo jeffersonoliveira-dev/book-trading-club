@@ -25,6 +25,6 @@ class App extends Component {
   }
 }
 
-// work in progress
+// designing all the cores of this projects
 
 export default App;
