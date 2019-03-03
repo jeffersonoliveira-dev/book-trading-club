@@ -25,6 +25,6 @@ class App extends Component {
   }
 }
 
-// designing all the cores of this projects
+// change to welcome to the django
 
 export default App;
