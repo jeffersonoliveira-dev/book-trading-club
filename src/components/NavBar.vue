@@ -1,28 +1,32 @@
 <template>
-<div class="top">
+  <div class="top">
     <nav>
-    <div class="nav-wrapper light-blue lighten-4">
-      <div class="left">
-          <router-link to="/"> Home </router-link>
+      <div class="nav-wrapper grey darken-4">
+        <div class="container">
+          <div class="left">
+            <router-link to="/">Home</router-link>
+          </div>
+          <ul id="nav-mobile" class="right">
+            <li>
+              <router-link to="/login">Login</router-link>
+            </li>
+            <li>
+              <router-link to="/signup">Sign Up</router-link>
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><router-link to="/login"> Login </router-link></li>
-      </ul>
-    </div>
-  </nav>
-</div>
+    </nav>
+  </div>
 </template>
 
 <script>
-export default {
-
-};
+export default {};
 </script>
 
 <style>
 .top {
   overflow: hidden;
-  background-color: #333;
   position: absolute; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */

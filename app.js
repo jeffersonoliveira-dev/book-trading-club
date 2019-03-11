@@ -1,7 +1,7 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
-  cors = require("cors");
-
+  cors = require("cors"),
+  { join } = require("path");
 const app = express();
 
 let port = process.env.PORT || 3000;
@@ -15,6 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("index");
+app.get("*", (req, res) => {
+  res.sendFile(join(__dirname, "dist", "index.html"));
 });
