@@ -1,7 +1,9 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
   cors = require("cors"),
-  { join } = require("path");
+  { join } = require("path"),
+  session = require("express-session"),
+  passport = require("passport");
 const app = express();
 // let api = require('./routes/api.js')
 //let user = require('./routes/user.js')
@@ -15,11 +17,20 @@ app.use(express.static("dist"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(
+  session({
+    key: "user_sid",
+    secret: "niceSecretBTW",
+    resave: false
+  })
+);
 
-app.get(['/', '/signup', '/login'], (req, res) => {
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get(["/", "/signup", "/login"], (req, res) => {
   res.sendFile(join(__dirname, "dist", "index.html"));
 });
-
 
 // app.use('/api', api)
 // app.use('/user', user)
