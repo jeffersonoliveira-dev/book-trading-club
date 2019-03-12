@@ -3,7 +3,8 @@ const express = require("express"),
   cors = require("cors"),
   { join } = require("path");
 const app = express();
-
+// let api = require('./routes/api.js')
+//let user = require('./routes/user.js')
 let port = process.env.PORT || 3000;
 
 app.listen(port, () => {
@@ -15,6 +16,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("*", (req, res) => {
+app.get(['/', '/signup', '/login'], (req, res) => {
   res.sendFile(join(__dirname, "dist", "index.html"));
 });
+
+
+// app.use('/api', api)
+// app.use('/user', user)
