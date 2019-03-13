@@ -1,29 +1,29 @@
 <template>
   <div class="box card">
-    <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post">
+    <form id="app" @submit="checkForm" >
       <p>
         <label for="name">Full Name:</label>
-        <input id="name" v-model="name" type="text" name="name">
+        <input id="name" type="text" name="name">
       </p>
 
       <p>
         <label for="city">City:</label>
-        <input id="city" v-model="city" type="text" name="city">
+        <input id="city" type="text" name="city">
       </p>
 
       <p>
         <label for="state">State:</label>
-        <input id="state" v-model="state" type="text" name="state">
+        <input id="state" type="text" name="state">
       </p>
 
       <p>
         <label for="email">Email:</label>
-        <input id="email" v-model="email" type="text" name="email">
+        <input id="email" type="text" name="email">
       </p>
 
       <p>
-        <label for="age">Password:</label>
-        <input id="age" v-model="password" type="password" name="password">
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password">
       </p>
 
       <p>
@@ -34,7 +34,46 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data: ''
+    }
+
+},
+  methods: {
+    checkForm(e) {
+      e.preventDefault()
+
+      let name = document.getElementById('name').value;
+      let city = document.getElementById('city').value;
+      let state = document.getElementById('state').value;
+      let email = document.getElementById('email').value;
+      let password = document.getElementById('password').value;
+
+      let data = {
+        name,
+        city,
+        state,
+        email,
+        password
+      }
+      console.log(data)
+      fetch('/user/register', 
+            {method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+             body: JSON.stringify(data)
+            })
+        .then(response => {
+        })
+  }
+}
+
+};
+
 </script>
 
 <style>

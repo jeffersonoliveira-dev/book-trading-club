@@ -3,7 +3,10 @@ const express = require("express"),
   cors = require("cors"),
   { join } = require("path"),
   session = require("express-session"),
-  passport = require("passport");
+  passport = require("passport"),
+  User = require("./db/UserModel.js"),
+  user = require("./routes/user.js"),
+  connectionDB = require("./db/database.js");
 const app = express();
 // let api = require('./routes/api.js')
 //let user = require('./routes/user.js')
@@ -33,4 +36,4 @@ app.get(["/", "/signup", "/login"], (req, res) => {
 });
 
 // app.use('/api', api)
-// app.use('/user', user)
+app.use("/user", user);
