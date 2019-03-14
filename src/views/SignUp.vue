@@ -51,6 +51,8 @@ export default {
       let email = document.getElementById('email').value;
       let password = document.getElementById('password').value;
 
+      // 
+
       let data = {
         name,
         city,
@@ -58,7 +60,6 @@ export default {
         email,
         password
       }
-      console.log(data)
       fetch('/user/register', 
             {method: 'POST',
               headers: {
@@ -67,8 +68,13 @@ export default {
               },
              body: JSON.stringify(data)
             })
-        .then(response => {
+        .then( (response) => {
+         // response ? this.$router.push('/login') : alert('account didnt created')
+         return response.json() 
         })
+        .then(data =>
+        data? this.$router.push('/login') : alert('couldnt create account')
+             ) 
   }
 }
 

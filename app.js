@@ -24,7 +24,8 @@ app.use(
   session({
     key: "user_sid",
     secret: "niceSecretBTW",
-    resave: false
+    resave: false,
+    saveUninitialized: true
   })
 );
 

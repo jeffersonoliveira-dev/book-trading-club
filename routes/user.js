@@ -24,10 +24,9 @@ router.post('/register', (req, res) => {
 
   User.createUser(newUser, (err,user) => {
     if(err) throw err
-    console.log(user)
   })
-
-  res.redirect('/login');
+ // se o usuario for real, envie true
+ res.send(true)
 })
 
 passport.serializeUser((user, done) => {
