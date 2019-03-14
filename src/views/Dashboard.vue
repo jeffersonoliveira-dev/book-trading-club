@@ -1,5 +1,7 @@
 <template>
-  <h1> hello user </h1>
+  <div>
+    {{data[0].user}}
+  </div>
 </template>
 
 <script>
@@ -11,19 +13,21 @@ export default {
     }
   },
   mounted() {
-  //  this.getUser()
+  this.getBooks()
   },
   methods: {
-//    getUser() {
-//      fetch('/api/add',{
-//        headers: {
-//          'Accept': 'application/json',
-//          'Content-Type': 'application/json'
-//        },
-//        method: 'post',
-//        body: JSON.stringify({book: 'bozo'})
-//      }).then(response => console.log(response))
-//  }
+    getBooks() {
+      fetch('/api/books',{
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'get',
+      }).then(response => response.json())
+      .then( data => {
+        this.data = data
+      })
+  }
   }
 }
 </script>

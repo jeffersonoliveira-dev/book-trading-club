@@ -3,10 +3,6 @@ let router = express.Router()
 const mongoose = require('mongoose')
 const User = require('../db/UserModel.js')
 
-router.get('/', (req, res) => {
-  console.log('this is the right route')
-})
-
 
 
 // get all books
@@ -18,7 +14,16 @@ router.get('/books', (req, res) => {
     docs.map(item => {
       allBooks = [...allBooks, { id: item._id, name: item.name, books: item.books }]
     })
-  }).then( () => { console.log(allBooks) } )
+  }).then( () => {
+    let data =[]
+    allBooks.map( item => {
+      data.push({
+        user: item.name,
+        books: item.books
+      })
+    })
+    res.send(data)
+  })
 })
 
 // trade send to notification
