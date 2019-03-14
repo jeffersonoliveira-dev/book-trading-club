@@ -29,6 +29,27 @@ router.post('/register', (req, res) => {
  res.send(true)
 })
 
+passport.use(new LocalStrategy(
+  {usernameField: 'email', passwordField: 'password'},
+  function(email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      User.comparePassword(password, user.password,(err,isMatch) => {
+        if(err) throw err;
+        if(isMatch) {
+					console.log('authenticated')
+          return done(null, user)
+					
+        } else {
+					console.log('not authenticated')
+          return done(null, false, { message: 'invalid password' })
+        }
+      })
+    });
+  }
+));
+
 passport.serializeUser((user, done) => {
   done(null, user.id)
 })
@@ -40,9 +61,9 @@ passport.deserializeUser((id, done) => {
 })
 
 router.post('/login', 
-            passport.authenticate('local', {successRedirect:'/dashboard', failureRedirect:'/user/login'}),
+            passport.authenticate('local'),
             (req,res) => {
-              res.redirect('/dashboard')
+							res.send(true)
             }
            )
 

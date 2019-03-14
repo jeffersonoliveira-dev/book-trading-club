@@ -2,13 +2,13 @@
   <div class="box card">
     <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post">
       <p>
-        <label for="name">email</label>
-        <input id="name" v-model="name" type="text" name="name">
+        <label for="email">email</label>
+        <input id="email"  type="text" name="email">
       </p>
 
       <p>
-        <label for="age">password</label>
-        <input id="age" v-model="password" type="password" name="password">
+        <label for="password">password</label>
+        <input id="password" type="password" name="password">
       </p>
 
       <p>
@@ -19,7 +19,42 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data: ''
+    }
+  },
+  methods: {
+    checkForm(e) {
+      e.preventDefault()
+
+      let email = document.getElementById('email').value
+      let password = document.getElementById('password').value
+      let data = {
+        email,
+        password
+      }
+      fetch('/user/login',
+      {
+        method: 'POST',
+        headers: {
+          'Accept' : 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }
+           )
+           .then(response => {
+             if(response.status === 401) {
+               return alert('wrong password/email')
+             } else {
+               this.$router.push('dashboard')
+             }
+           } )
+    }
+  }
+};
 </script>
 
 <style>
