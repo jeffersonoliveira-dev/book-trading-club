@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{data[0].user}}
+    {{name}}
   </div>
 </template>
 
@@ -9,10 +9,11 @@ export default {
   data() {
 
     return {
-      data: ''
+      data: '',
+      name: ''
     }
   },
-  mounted() {
+  beforeMount() {
   this.getBooks()
   },
   methods: {
@@ -26,6 +27,8 @@ export default {
       }).then(response => response.json())
       .then( data => {
         this.data = data
+        this.name = data[0].user
+        console.log(data)
       })
   }
   }

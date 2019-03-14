@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <NavBar/>
-    <img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-397393.jpg">
     <router-view/>
   </div>
 </template>
@@ -20,7 +19,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,9 +29,4 @@ export default {
   margin-top: 60px;
 }
 
-img {
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
-}
 </style>
