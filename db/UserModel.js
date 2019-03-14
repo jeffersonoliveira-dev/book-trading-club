@@ -35,3 +35,9 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 module.exports.getUserById = function(id, callback){
 	User.findById(id, callback);
 }
+
+module.exports.addBook = function(id, book, callback) {
+  User.find({_id: id}).then(user => {
+     user.books = [ ...user.books, book ] 
+  })
+}
