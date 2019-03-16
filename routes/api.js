@@ -30,6 +30,7 @@ router.get('/books', (req, res) => {
 
 router.get('/trade', (req, res) => {
   // mount obj with 2 usernames/ids and books with trade acceptance 
+
 })
 
 // add book
@@ -46,3 +47,6 @@ router.post('/add', (req, res) => {
 
 
 module.exports = router
+
+
+// need to finish API
