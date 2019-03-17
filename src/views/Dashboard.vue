@@ -21,7 +21,7 @@ export default {
       console.log('socket client connected')
     },
     customEmit(data) {
-      console.log(data)
+      // server call
     }
   },
   methods: {
