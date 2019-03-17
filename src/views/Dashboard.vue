@@ -16,6 +16,14 @@ export default {
   beforeMount() {
   this.getBooks()
   },
+  sockets: {
+    connect() {
+      console.log('socket client connected')
+    },
+    customEmit(data) {
+      console.log(data)
+    }
+  },
   methods: {
     getBooks() {
       fetch('/api/books',{

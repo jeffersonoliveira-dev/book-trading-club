@@ -5,6 +5,7 @@ const express = require("express"),
   session = require("express-session"),
   passport = require("passport"),
   User = require("./db/UserModel.js"),
+  socket = require('socket.io'),
   user = require("./routes/user.js"),
   api = require("./routes/api.js");
 const connectionDB = require("./db/database.js");
@@ -13,10 +14,11 @@ const app = express();
 //let user = require('./routes/user.js')
 let port = process.env.PORT || 3000;
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
+const io = socket(server)
 app.use(express.static("dist"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -39,3 +41,7 @@ app.get(["/", "/signup", "/login"], (req, res) => {
 
 app.use("/api", api);
 app.use("/user", user);
+
+io.on('connection', client => {
+  io.sockets.emit('hello', 'hello')
+})
