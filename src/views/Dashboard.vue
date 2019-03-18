@@ -1,6 +1,16 @@
 <template>
   <div>
-    {{name}}
+    <ul>
+      <li :key="index" v-for="(books, index) in data">
+        <h1>{{books.user}}</h1>
+        <ul>
+          <li :key="index2" v-for="(books2, index2) in books">
+            <h1>{{books2.books}}</h1>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
   </div>
 </template>
 
@@ -20,9 +30,6 @@ export default {
     connect() {
       console.log('socket client connected')
     },
-    customEmit(data) {
-      // server call
-    }
   },
   methods: {
     getBooks() {
@@ -34,6 +41,7 @@ export default {
         method: 'get',
       }).then(response => response.json())
       .then( data => {
+
         this.data = data
         this.name = data[0].user
         console.log(data)
