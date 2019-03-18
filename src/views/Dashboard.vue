@@ -1,26 +1,15 @@
-<template>
-  <div>
-    <ul>
-      <li :key="index" v-for="(books, index) in data">
-        <h1>{{books.user}}</h1>
-        <ul>
-          <li :key="index2" v-for="(books2, index2) in books">
-            <h1>{{books2.books}}</h1>
-          </li>
-        </ul>
-      </li>
-    </ul>
 
-  </div>
+<template>
 </template>
 
 <script>
+// redesign api to send a list with the books and obj even if repeats the name of the user
 export default {
   data() {
 
     return {
       data: '',
-      name: ''
+      books: ''
     }
   },
   beforeMount() {
@@ -43,7 +32,7 @@ export default {
       .then( data => {
 
         this.data = data
-        this.name = data[0].user
+        this.books = data.books
         console.log(data)
       })
   }
