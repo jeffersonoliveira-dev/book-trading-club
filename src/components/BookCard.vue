@@ -22,6 +22,7 @@ export default {
   },
   props: {
     name: String,
+    id: String,
     book: String
   }
 }
