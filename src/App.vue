@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavBar/>
+    <NavBar v-bind:logged="this.logged"/>
     <router-view/>
   </div>
 </template>
@@ -12,8 +12,23 @@ export default {
   name: "navbar",
   components: {
     NavBar
+  },
+  data() {
+    return {
+      logged: false
+    }
+  },
+  methods: {
+    isLogged() {
+      fetch('/user/logged')
+      .then(response => response.json())
+      .then(data => {
+        this.logged = data
+      })
+      
+    }
   }
-};
+}
 </script>
 
 

@@ -63,9 +63,12 @@ passport.deserializeUser((id, done) => {
 router.post('/login', 
             passport.authenticate('local'),
             (req,res) => {
-							res.send(true)
+							res.send(req.isAuthenticated())
             }
            )
 
+router.get('/logged', (req, res) => {
+  res.send(req.isAuthenticated())
+})
 module.exports = router
 

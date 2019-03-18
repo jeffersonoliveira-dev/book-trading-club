@@ -12,17 +12,12 @@ router.get('/books', (req, res) => {
   let allBooks = [];
   User.find({}, (err, docs) => {
     docs.map(item => {
-      allBooks = [...allBooks, { id: item._id, name: item.name, books: item.books }]
+      item.books.map( book => {
+      allBooks = [...allBooks, { id: item._id, name: item.name, book: book }]
+      } )
     })
   }).then( () => {
-    let data =[]
-    allBooks.map( item => {
-      data.push({
-        user: item.name,
-        books: item.books
-      })
-    })
-    res.send(data)
+    res.send(allBooks)
   })
 })
 

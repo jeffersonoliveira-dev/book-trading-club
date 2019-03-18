@@ -1,19 +1,28 @@
 <template>
   <div class="top">
     <nav>
-      <div class="nav-wrapper grey darken-4">
+      <div class="nav-wrapper blue-grey darken-1">
         <div class="container">
           <div class="left">
             <router-link to="/">Home</router-link>
           </div>
-          <ul id="nav-mobile" class="right">
-            <li>
-              <router-link to="/login">Login</router-link>
-            </li>
-            <li>
-              <router-link to="/signup">Sign Up</router-link>
-            </li>
-          </ul>
+          <div v-if="logged">
+             <ul id="nav-mobile" class="right">
+              <li>
+              <a class="btn-floating blue"> <i class="material-icons">account_circle</i></a>
+              </li>
+            </ul>
+         </div>
+          <div v-else>
+            <ul id="nav-mobile" class="right">
+              <li>
+                <router-link to="/login">Login</router-link>
+              </li>
+              <li>
+              <router-link to="/signup">Signup</router-link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -21,7 +30,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data: ''
+    }
+  },
+  methods: {
+
+  },
+  props: {
+    logged: Boolean
+  },
+  mounted() {
+  }
+}
 </script>
 
 <style>

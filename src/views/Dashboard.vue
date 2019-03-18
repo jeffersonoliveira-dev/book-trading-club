@@ -1,12 +1,21 @@
 
 <template>
+  <ul>
+    <li :key="index" v-for="(item, index) in data">
+    <BookCard :book="item.book" :name="item.name" />
+    </li>
+  </ul>
 </template>
 
 <script>
-// redesign api to send a list with the books and obj even if repeats the name of the user
-export default {
-  data() {
+import BookCard from '../components/BookCard.vue'
 
+export default {
+  name: 'bookcard',
+  components: {
+    BookCard
+  },
+  data() {
     return {
       data: '',
       books: ''
@@ -14,6 +23,7 @@ export default {
   },
   beforeMount() {
   this.getBooks()
+  console.log(this.$parent.isLogged())
   },
   sockets: {
     connect() {
@@ -30,10 +40,7 @@ export default {
         method: 'get',
       }).then(response => response.json())
       .then( data => {
-
         this.data = data
-        this.books = data.books
-        console.log(data)
       })
   }
   }
@@ -41,5 +48,9 @@ export default {
 </script>
 
 <style>
+  ul > li {
+  margin: auto;
+  width: 50%;
+  }
 
 </style>
