@@ -9,7 +9,7 @@
           <div v-if="logged">
              <ul id="nav-mobile" class="right">
               <li>
-              <a class="btn-floating blue"> <i class="material-icons">account_circle</i></a>
+              <a class="btn-floating blue"><i class="material-icons">account_circle</i></a>
               </li>
             </ul>
          </div>
