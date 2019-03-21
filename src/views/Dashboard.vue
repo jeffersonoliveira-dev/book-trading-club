@@ -1,56 +1,55 @@
-
 <template>
   <ul>
     <li :key="index" v-for="(item, index) in data">
-    <BookCard :book="item.book" :name="item.name" :id="item.id" />
+      <BookCard :book="item.book" :name="item.name" :id="item.id"/>
     </li>
   </ul>
 </template>
 
 <script>
-import BookCard from '../components/BookCard.vue'
+import BookCard from "../components/BookCard.vue";
 
 export default {
-  name: 'bookcard',
+  name: "bookcard",
   components: {
     BookCard
   },
   data() {
     return {
-      data: '',
-      books: ''
-    }
+      data: "",
+      books: ""
+    };
   },
   beforeMount() {
-  this.getBooks()
-  console.log(this.$parent.isLogged())
+    this.getBooks();
+    console.log(this.$parent.isLogged());
   },
   sockets: {
     connect() {
-      console.log('socket client connected')
-    },
+      console.log("socket client connected");
+    }
   },
   methods: {
     getBooks() {
-      fetch('/api/books',{
+      fetch("/api/books", {
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json"
         },
-        method: 'get',
-      }).then(response => response.json())
-      .then( data => {
-        this.data = data
+        method: "get"
       })
+        .then(response => response.json())
+        .then(data => {
+          this.data = data;
+        });
+    }
   }
-  }
-}
+};
 </script>
 
 <style>
-  ul > li {
+ul > li {
   margin: auto;
   width: 50%;
-  }
-
+}
 </style>

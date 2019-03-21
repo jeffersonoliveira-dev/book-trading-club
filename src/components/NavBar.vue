@@ -7,19 +7,19 @@
             <router-link to="/">Home</router-link>
           </div>
           <div v-if="logged">
-             <ul id="nav-mobile" class="right">
+            <ul class="right">
               <li>
-              <a class="btn-floating blue"><i class="material-icons">account_circle</i></a>
+                <Menu/>
               </li>
             </ul>
-         </div>
+          </div>
           <div v-else>
-            <ul id="nav-mobile" class="right">
+            <ul class="right">
               <li>
                 <router-link to="/login">Login</router-link>
               </li>
               <li>
-              <router-link to="/signup">Signup</router-link>
+                <router-link to="/signup">Signup</router-link>
               </li>
             </ul>
           </div>
@@ -30,21 +30,23 @@
 </template>
 
 <script>
+import Menu from "./Menu.vue";
 export default {
+  name: "menuBar",
+  components: {
+    Menu
+  },
   data() {
     return {
-      data: ''
-    }
+      data: ""
+    };
   },
-  methods: {
-
-  },
+  methods: {},
   props: {
     logged: Boolean
   },
-  mounted() {
-  }
-}
+  mounted() {}
+};
 </script>
 
 <style>
@@ -53,5 +55,9 @@ export default {
   position: absolute; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
+}
+
+.right {
+  height: 800px;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="col s12 m12">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
-          <span class="card-title">{{ book  }}</span>
+          <span class="card-title">{{ book }}</span>
         </div>
         <div class="card-action">
           <a href="#">{{name}}</a>
@@ -17,17 +17,19 @@
 export default {
   data() {
     return {
-      data: ''
-    }
+      data: ""
+    };
   },
   props: {
     name: String,
     id: String,
     book: String
   }
-}
+};
 </script>
 
-<style>
-
+<style scoped>
+.row {
+  z-index: -1;
+}
 </style>
