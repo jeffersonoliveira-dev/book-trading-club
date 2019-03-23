@@ -25,11 +25,13 @@
           </a>
           <transition name="dropdown">
             <div class="header__dropdown-menu" v-bind:class="{ active: show }" v-if="show">
-               <ul>
-                 <li>
-                 <h6 class="black"><i class="material-icons">account_circle</i>profile</h6>
-                 </li>
-               </ul>
+              <div class="menuBox">
+                <ul>
+                  <li>
+                <h6><i class="material-icons">account_circle</i>profile</h6>
+                </li>
+                </ul>
+              </div>
             </div>
           </transition>
         </li>
@@ -51,6 +53,13 @@ export default {
 </script>
 
 <style scoped>
+
+.menuBox {
+  position: relative;
+  color: black;
+  margin-left: 5vw
+}
+
 ul {
   margin: 0;
   padding: 0;
