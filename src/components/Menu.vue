@@ -24,7 +24,13 @@
             </transition>
           </a>
           <transition name="dropdown">
-            <div class="header__dropdown-menu" v-bind:class="{ active: show }" v-if="show"></div>
+            <div class="header__dropdown-menu" v-bind:class="{ active: show }" v-if="show">
+               <ul>
+                 <li>
+                 <h6 class="black"><i class="material-icons">account_circle</i>profile</h6>
+                 </li>
+               </ul>
+            </div>
           </transition>
         </li>
       </ul>
