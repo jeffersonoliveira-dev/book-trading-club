@@ -26,11 +26,15 @@
           <transition name="dropdown">
             <div class="header__dropdown-menu" v-bind:class="{ active: show }" v-if="show">
               <div class="menuBox">
-                <ul>
-                  <li>
-                <h6><i class="material-icons">account_circle</i>profile</h6>
-                </li>
-                </ul>
+                <div class="items">
+                  <div class="item">Heriberto Nickel</div>
+                  <div class="item">Brittaney Haliburton</div>
+                  <div class="item">Maritza Winkler</div>
+                  <div class="item">Carmon Rigg</div>
+                  <div class="item">Alice Marmon</div>
+                  <div class="item">Lyman Steakley</div>
+                  <div class="item">Zenia Correa</div>
+                </div>
               </div>
             </div>
           </transition>
@@ -57,13 +61,22 @@ export default {
 .menuBox {
   position: relative;
   color: black;
-  margin-left: 5vw
+  display: flex
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
 }
+.items .item {
+  flex: 1 0 100%;
+  box-sizing: border-box;
+  background: #e0ddd5;
+  color: #171e42;
+  padding: 10px;
+}
+
 
 h1 {
   margin: 0;
