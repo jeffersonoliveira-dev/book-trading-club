@@ -27,13 +27,9 @@
             <div class="header__dropdown-menu" v-bind:class="{ active: show }" v-if="show">
               <div class="menuBox">
                 <div class="items">
-                  <div class="item">Heriberto Nickel</div>
-                  <div class="item">Brittaney Haliburton</div>
-                  <div class="item">Maritza Winkler</div>
-                  <div class="item">Carmon Rigg</div>
-                  <div class="item">Alice Marmon</div>
-                  <div class="item">Lyman Steakley</div>
-                  <div class="item">Zenia Correa</div>
+                  <div class="item"><button class="btn-floating"><i class="large material-icons">account_circle</i></button></div>
+                  <div class="item"><button class="btn-floating"><i class="large material-icons">library_books</i></button></div>
+                  <div class="item"><button class="btn-floating"><i class="large material-icons">history</i></button></div>
                 </div>
               </div>
             </div>
@@ -58,6 +54,10 @@ export default {
 
 <style scoped>
 
+.large {
+  margin-top: -10px;
+}
+
 .menuBox {
   position: relative;
   color: black;
@@ -68,13 +68,14 @@ export default {
 .items {
   display: flex;
   flex-wrap: wrap;
+
 }
 .items .item {
   flex: 1 0 100%;
   box-sizing: border-box;
-  background: #e0ddd5;
-  color: #171e42;
   padding: 10px;
+  display: inline;
+  margin-left: 10px;
 }
 
 
@@ -156,15 +157,12 @@ hr {
   bottom: 0;
   z-index: 1;
   right: 0;
-  min-height: 400px;
-  min-width: 280px;
+  min-height: 300px;
+  min-width: 130px;
   overflow-y: auto;
   padding: 2rem 2rem 2rem 0;
   margin-top: 1rem;
   border-radius: 8px;
-  background-color: white;
-  border: 1px solid #dadce0;
-  background-clip: padding-box;
 }
 
 .slide-fade-enter-active,
