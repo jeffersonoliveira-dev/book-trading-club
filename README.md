@@ -1,29 +1,13 @@
-# hello-world
+# in progress
 
-## Project setup
-```
-yarn install
-```
+to-do
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+>> trade button on books@dashboard
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+>> trade API and make it work
 
-### Run your tests
-```
-yarn run test
-```
+>> create more accounts and start to trade and push to history/notifications
 
-### Lints and fixes files
-```
-yarn run lint
-```
-
+>> get ready ro deplay [ maybe docker or somethings idk ]
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
