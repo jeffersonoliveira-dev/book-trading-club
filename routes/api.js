@@ -21,6 +21,11 @@ router.get('/books', (req, res) => {
   })
 })
 
+// get user books
+router.get('/userbooks', (req, res) => {
+  res.send(req.user.books)
+})
+
 // trade send to notification
 
 router.get('/trade', (req, res) => {

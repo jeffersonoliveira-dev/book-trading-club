@@ -37,6 +37,15 @@ app.get(["/", "/signup", "/login"], (req, res) => {
   res.sendFile(join(__dirname, "dist", "index.html"));
 });
 
+app.get(["/dashboard", "/profile", "/books", "/history"], (req, res) => {
+  if(req.isAuthenticated()) {
+    res.sendFile(join(__dirname, "dist", "index.html"));
+  } else {
+    res.redirect('/login')
+  }
+
+})
+
 app.use("/api", api);
 app.use("/user", user);
 

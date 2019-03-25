@@ -29,6 +29,7 @@ export default {
     }
   }
 }
+// localstorage here if the user is logged
 </script>
 
 
