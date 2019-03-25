@@ -27,9 +27,9 @@
             <div class="header__dropdown-menu" v-bind:class="{ active: show }" v-if="show">
               <div class="menuBox">
                 <div class="items">
-                  <div class="item"><button class="btn-floating"><i class="large material-icons">account_circle</i></button></div>
-                  <div class="item"><button class="btn-floating"><i class="large material-icons">library_books</i></button></div>
-                  <div class="item"><button class="btn-floating"><i class="large material-icons">history</i></button></div>
+                  <div class="item"><button v-on:click="getRoute('profile')" class="btn-floating"><i class="large material-icons">account_circle</i></button></div>
+                  <div class="item"><button v-on:click="getRoute('books')" class="btn-floating"><i class="large material-icons">library_books</i></button></div>
+                  <div class="item"><button v-on:click="getRoute('history')" class="btn-floating"><i class="large material-icons">history</i></button></div>
                 </div>
               </div>
             </div>
@@ -46,6 +46,11 @@ export default {
     return {
       show: false
     };
+  },
+  methods: {
+    getRoute(route) {
+      this.$router.push(route)
+    }
   }
 };
 
