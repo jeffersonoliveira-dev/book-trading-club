@@ -4,7 +4,13 @@
       <div class="nav-wrapper blue-grey darken-1">
         <div class="container">
           <div class="left">
-            <router-link to="/">Home</router-link>
+            <div v-if="logged">
+
+              <router-link to="/dashboard">Home</router-link>
+            </div>
+            <div v-else>
+              <router-link to="/"> Home</router-link>
+            </div>
           </div>
           <div v-if="logged">
             <ul class="right">
