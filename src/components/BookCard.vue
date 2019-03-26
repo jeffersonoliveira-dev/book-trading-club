@@ -5,6 +5,9 @@
         <div class="card-content white-text">
           <span class="card-title">{{ book }}</span>
         </div>
+         <div class="card-action">
+          <a href="#">{{name}}</a>
+        </div>
         <div class="card-action">
           <a href="#">{{name}}</a>
         </div>

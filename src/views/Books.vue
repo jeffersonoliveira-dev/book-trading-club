@@ -1,9 +1,16 @@
 <template>
-  <div>
+  <div class="container">
     <ul>
       <li v-for="(book, index) in books" :key="index">
-        <h1>{{ book }}</h1>   
-        <!-- put everything on cards -->
+           <div class="row">
+            <div class="col s12 m12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">{{ book }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
       </li>
     </ul>
   </div>
@@ -33,6 +40,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+ul > li{
+  width: 50%;
+  margin: auto;
+}
 
 </style>
