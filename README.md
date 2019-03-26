@@ -8,4 +8,4 @@ to-do
 
 >> create more accounts and start to trade and push to history/notifications
 
->> get ready ro deplay [ maybe docker or somethings idk ]
+>> get ready ro deploy [ maybe docker or somethings idk ]
