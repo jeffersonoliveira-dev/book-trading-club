@@ -1,13 +1,10 @@
 const express = require('express')
 let router = express.Router()
-const mongoose = require('mongoose')
 const User = require('../db/UserModel.js')
 
 
 
 // get all books
-
-
 router.get('/books', (req, res) => {
   let allBooks = [];
   User.find({}, (err, docs) => {
@@ -27,9 +24,9 @@ router.get('/userbooks', (req, res) => {
 })
 
 // trade send to notification
-
 router.get('/trade', (req, res) => {
-  // mount obj with 2 usernames/ids and books with trade acceptance 
+  
+// mount obj with 2 usernames/ids and books with trade acceptance 
 
 })
 
@@ -47,6 +44,3 @@ router.post('/add', (req, res) => {
 
 
 module.exports = router
-
-
-// need to finish API

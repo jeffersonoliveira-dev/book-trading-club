@@ -30,6 +30,7 @@
                   <div class="item"><button v-on:click="getRoute('profile')" class="btn-floating"><i class="large material-icons">account_circle</i></button></div>
                   <div class="item"><button v-on:click="getRoute('books')" class="btn-floating"><i class="large material-icons">library_books</i></button></div>
                   <div class="item"><button v-on:click="getRoute('history')" class="btn-floating"><i class="large material-icons">history</i></button></div>
+                  <div class="item"><button v-on:click="logout()" class="btn-floating"><i class="large material-icons">power_settings_new</i></button></div>
                 </div>
               </div>
             </div>
@@ -50,6 +51,12 @@ export default {
   methods: {
     getRoute(route) {
       this.$router.push(route)
+    },
+    logout() {
+      console.log('ola')
+      fetch('/user/logout', { method: "POST" })
+      .then(() => {
+      }).then(() =>   window.location.href = 'http://localhost:3000/')
     }
   }
 };

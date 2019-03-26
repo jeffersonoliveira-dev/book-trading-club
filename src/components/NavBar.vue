@@ -55,7 +55,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .top {
   overflow: hidden;
   position: absolute; /* Set the navbar to fixed position */

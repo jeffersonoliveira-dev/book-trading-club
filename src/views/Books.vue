@@ -6,6 +6,7 @@
             <div class="col s12 m12">
               <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
+                  <button class="btn-floating right" v-on:click="removeUserBook">X</button>
                   <span class="card-title">{{ book }}</span>
                 </div>
               </div>
@@ -35,6 +36,9 @@ export default {
         this.books = data
         console.log(this.books)
       })
+    },
+    removeUserBook() {
+      console.log('hey')
     }
   }
 }
