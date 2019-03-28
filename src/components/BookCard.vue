@@ -8,10 +8,7 @@
          <div class="card-action">
           <a href="#">{{name}}</a>
         </div>
-        <div class="card-action">
-          <a href="#">{{name}}</a>
-        </div>
-      </div>
+     </div>
     </div>
   </div>
 </template>
