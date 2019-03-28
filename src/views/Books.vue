@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <!-- add input to add book api -->
+    <input type="text">
     <ul>
       <li v-for="(book, index) in books" :key="index">
            <div class="row">
