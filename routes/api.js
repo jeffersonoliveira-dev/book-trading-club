@@ -36,10 +36,20 @@ router.post('/add', (req, res) => {
    User.findOne({_id: req.user._id}).then(user => {
       user.books = [ ...req.user.books, req.body.book ] 
       user.save()
+      console.log(user.books)
    })
 })
 
 // remove book
+
+router.post('/remove', (req, res) => {
+   User.findOne({_id: req.user._id}).then(user => {
+     // remove filter book 
+      // user.books = [ ...req.user.books, req.body.book ] 
+      // user.save()
+      // console.log(user.books)
+   })
+})
 
 
 

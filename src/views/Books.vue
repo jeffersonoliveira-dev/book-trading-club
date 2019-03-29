@@ -1,7 +1,20 @@
 <template>
   <div class="container">
     <!-- add input to add book api -->
-    <input type="text">
+    <div class="row inputBox">
+      <form v-on:submit.prevent="addUserBook">
+            <div class="col s12 m12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <input id="book" type="text" placeholder="add multiple lines" >
+                </div>
+                 <div class="card-action">
+                <button class="btn ">add book</button>
+                </div>
+              </div>
+            </div>
+      </form>
+     </div>
     <ul>
       <li v-for="(book, index) in books" :key="index">
            <div class="row">
@@ -36,11 +49,24 @@ export default {
       .then(response => response.json())
       .then(data => {
         this.books = data
-        console.log(this.books)
       })
     },
     removeUserBook() {
       console.log('hey')
+      // remove func
+    },
+    addUserBook() {
+      let newBook = document.getElementById('book').value
+      fetch('/api/add', {
+             method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({book : newBook})
+            }).then( () => {  } )
+            // introduzir websocket
+      document.getElementById('book').value = ''
     }
   }
 }
@@ -48,6 +74,11 @@ export default {
 
 <style scoped>
 ul > li{
+  width: 50%;
+  margin: auto;
+}
+
+.inputBox {
   width: 50%;
   margin: auto;
 }
