@@ -53,7 +53,6 @@ export default {
       this.$router.push(route)
     },
     logout() {
-      console.log('ola')
       fetch('/user/logout', { method: "POST" })
       .then(() => {
       }).then(() =>   window.location.href = 'http://localhost:3000/')

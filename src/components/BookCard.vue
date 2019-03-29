@@ -29,4 +29,7 @@ export default {
 </script>
 
 <style scoped>
+.row {
+  z-index: -3;
+}
 </style>

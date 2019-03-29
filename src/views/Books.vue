@@ -21,7 +21,8 @@
             <div class="col s12 m12">
               <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
-                  <button class="btn-floating right" v-on:click="removeUserBook">X</button>
+                  <button class="btn-floating right" 
+                    v-on:click="removeUserBook(index)">X</button>
                   <span class="card-title">{{ book }}</span>
                 </div>
               </div>
@@ -35,9 +36,11 @@
 
 <script>
 export default {
+  name: 'books',
   data() {
     return {
-      books: []
+      books: [],
+      msg: ''
     }
   },
   beforeMount() {
@@ -50,9 +53,23 @@ export default {
       .then(data => {
         this.books = data
       })
+      this.$socket.emit('testing', 'emiting via client')
     },
-    removeUserBook() {
+    removeUserBook(index) {
       console.log('hey')
+      let newBooks = this.books.filter( (book, bookIndex) => bookIndex !== index )
+      fetch('/api/remove', {
+             method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({books : newBooks})
+      }).then( (data) => { 
+        return data.json()           
+      } )
+      console.log('book deleted')
+      this.books = newBooks
       // remove func
     },
     addUserBook() {
@@ -64,7 +81,12 @@ export default {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({book : newBook})
-            }).then( () => {  } )
+      }).then( (data) => { 
+        return data.json()           
+      } )
+      .then( data => {
+        this.books = data
+      } )
             // introduzir websocket
       document.getElementById('book').value = ''
     }

@@ -50,5 +50,4 @@ app.use("/api", api);
 app.use("/user", user);
 
 io.on("connection", client => {
-  io.sockets.emit("hello", "hello");
 });

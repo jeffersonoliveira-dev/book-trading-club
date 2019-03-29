@@ -68,7 +68,6 @@ export default {
              body: JSON.stringify(data)
             })
         .then( (response) => {
-         // response ? this.$router.push('/login') : alert('account didnt created')
          return response.json() 
         })
         .then(data =>

@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="books">
     <li :key="index" v-for="(item, index) in data">
       <BookCard :book="item.book" :name="item.name" :id="item.id"/>
     </li>
@@ -10,9 +10,9 @@
 import BookCard from "../components/BookCard.vue";
 
 export default {
-  name: "bookcard",
+  name: "dashboard",
   components: {
-    BookCard
+    BookCard,
   },
   data() {
     return {
@@ -20,13 +20,13 @@ export default {
       books: ""
     };
   },
-  beforeMount() {
+  mounted() {
     this.getBooks();
-    console.log(this.$parent.isLogged());
+    this.$parent.isLogged()
   },
   sockets: {
     connect() {
-      console.log("socket client connected");
+      console.log("connected via dashboard");
     }
   },
   methods: {
@@ -51,5 +51,9 @@ export default {
 ul > li {
   margin: auto;
   width: 50%;
+}
+
+.books {
+  z-index: -2;
 }
 </style>
