@@ -18,6 +18,9 @@ export default {
       logged: false
     }
   },
+  mounted() {
+    this.isLogged()
+  },
   methods: {
     isLogged() {
       fetch('/user/logged')
@@ -29,7 +32,6 @@ export default {
     }
   }
 }
-// localstorage here if the user is logged
 </script>
 
 

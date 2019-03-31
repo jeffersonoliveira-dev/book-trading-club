@@ -50,6 +50,24 @@ router.post('/remove', (req, res) => {
    })
 })
 
+router.get('/profile', (req, res ) => {
+  let data = {
+    name: req.user.name,
+    city: req.user.city,
+    state: req.user.state
+  }
+
+  res.send(data)
+})
+
+router.post('/profile', (req, res) => {
+    User.findOne({_id: req.user._id}).then(user => {
+      user.name = req.body.name,
+      user.city = req.body.city,
+      user.state = req.body.state
+      user.save()
+   })
+})
 
 
 module.exports = router

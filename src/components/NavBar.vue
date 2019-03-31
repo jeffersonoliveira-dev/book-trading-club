@@ -48,21 +48,11 @@ export default {
     };
   },
   methods: {
-    userAuth() {
-   fetch('/user/logged')
-      .then(response => response.json())
-      .then(data => {
-        console.log('usuario logado')
-        this.logged = data
-      })
-     
-    }
   },
   props: {
     logged: Boolean
   },
   mounted() {
-    this.userAuth()
   }
 };
 </script>

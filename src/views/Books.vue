@@ -53,7 +53,6 @@ export default {
       .then(data => {
         this.books = data
       })
-      this.$socket.emit('testing', 'emiting via client')
     },
     removeUserBook(index) {
       console.log('hey')
