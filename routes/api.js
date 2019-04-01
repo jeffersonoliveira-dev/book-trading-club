@@ -10,7 +10,7 @@ router.get('/books', (req, res) => {
   User.find({}, (err, docs) => {
     docs.map(item => {
       item.books.map( book => {
-      allBooks = [...allBooks, { id: item._id, name: item.name, book: book }]
+      allBooks = [...allBooks, { id: item._id, user: req.user._id, name: item.name, book: book }]
       } )
     })
   }).then( () => {
@@ -61,10 +61,10 @@ router.get('/profile', (req, res ) => {
 })
 
 router.post('/profile', (req, res) => {
-    User.findOne({_id: req.user._id}).then(user => {
-      user.name = req.body.name,
-      user.city = req.body.city,
-      user.state = req.body.state
+  User.findOne({_id: req.user._id}).then(user => {
+    user.name = req.body.name,
+    user.city = req.body.city,
+    user.state = req.body.state
       user.save()
    })
 })

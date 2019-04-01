@@ -8,7 +8,12 @@
          <div class="card-action">
           <a href="#">{{name}}</a>
         </div>
-     </div>
+        <div v-if="user !== id">
+          <div class="card-action">
+             <h6>trade button</h6>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +28,8 @@ export default {
   props: {
     name: String,
     id: String,
-    book: String
+    book: String,
+    user: String,
   }
 };
 </script>

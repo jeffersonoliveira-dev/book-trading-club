@@ -1,7 +1,7 @@
 <template>
   <ul class="books">
     <li :key="index" v-for="(item, index) in data">
-      <BookCard :book="item.book" :name="item.name" :id="item.id"/>
+      <BookCard :user="item.user" :book="item.book" :name="item.name" :id="item.id"/>
     </li>
   </ul>
 </template>
