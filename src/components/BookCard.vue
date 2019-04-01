@@ -10,14 +10,14 @@
         </div>
         <div v-if="user !== id">
           <div class="row tradeBox">
-            <div class="card-title col s8 m8">
+            <div class="card-title col s12 m8">
               <select v-model="selected" :key="index" v-for="(userbook, index) in books">
                 <option disabled value="">Please select one of your books to trade</option>
                 <option>{{userbook}}</option>
               </select>
             </div>
-            <div class="col s4 m4">
-              <button class="btn blue lighten-1 trade">trade</button>
+            <div class="col s12 m4">
+              <button class="btn blue lighten-1 trade" v-on:click="getTrade">trade</button>
             </div>
           </div>
         </div>
@@ -41,6 +41,14 @@ export default {
     user: String,
     books: Array,
   },
+  methods: {
+    getTrade() {
+      console.log(this.selected)
+      if(this.selected === '') {
+        alert('please select one of your books to trade')
+      }
+    }
+  }
 
 };
 </script>
