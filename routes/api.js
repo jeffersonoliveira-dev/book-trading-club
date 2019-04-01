@@ -70,4 +70,7 @@ router.post('/profile', (req, res) => {
 })
 
 
+// trade api here
+
+
 module.exports = router
