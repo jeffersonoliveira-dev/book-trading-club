@@ -30,6 +30,13 @@ router.get('/books', (req, res) => {
   })
 })
 
+
+router.get('/trades', (req, res) => {
+// usar req.user.name e req.user.trade para indentificar quem é o offer e o wish
+})
+
+
+
 // get user books
 router.get('/userbooks', (req, res) => {
   res.send(req.user.books)
