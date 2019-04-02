@@ -24,10 +24,17 @@ router.get('/userbooks', (req, res) => {
 })
 
 // trade send to notification
-router.get('/trade', (req, res) => {
-  
-// mount obj with 2 usernames/ids and books with trade acceptance 
-
+router.post('/trade', (req, res) => {
+  User.findOne({_id: req.user._id}).then( user => {
+    user.trade = [ ...user.trade, req.body.trade ]
+    user.save()
+    console.log(user)
+  } )
+  User.findOne({_id: req.body.trade.userWish}).then( user => {
+    user.trade = [ ...user.trade, req.body.trade ]
+    user.save()
+    console.log(user)
+  } )
 })
 
 // add book

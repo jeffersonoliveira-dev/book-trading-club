@@ -43,9 +43,30 @@ export default {
   },
   methods: {
     getTrade() {
-      console.log(this.selected)
       if(this.selected === '') {
         alert('please select one of your books to trade')
+      } else {
+      let newTrade = {
+        userOffer: this.user,
+        userWish: this.id,
+        bookOffer: this.selected,
+        bookWish: this.book,
+        deal: {
+          offer: true,
+          wish: false
+        }
+      }
+      fetch('/api/trade', {
+             method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ trade: newTrade})
+      }).then( () => { 
+        alert('your trade request has been sended')
+
+      } )
       }
     }
   }

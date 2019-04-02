@@ -33,7 +33,7 @@ export default {
     getBooks() {
       fetch("/api/books", {
         headers: {
-          Accept: "application/json",
+          "Accept": "application/json",
           "Content-Type": "application/json"
         },
         method: "get"
