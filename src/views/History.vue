@@ -6,6 +6,19 @@
 
 <script>
 export default {
+  data() {
+    return {
+      data: ''
+    }
+  },
+  mounted() {
+
+  },
+  methods: {
+    getTrades() {
+      fetch('/trades')
+    }
+  }
 }
 </script>
 

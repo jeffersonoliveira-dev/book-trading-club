@@ -14,7 +14,19 @@ router.get('/books', (req, res) => {
       } )
     })
   }).then( () => {
-    res.send(allBooks)
+    let trading = []
+    req.user.trade.map( book => {
+      trading.push({
+        bookWish :book.bookWish,
+        bookOffer: book.bookOffer
+      })
+
+    })
+    let data = {
+      tradingBooks: trading,
+      allBooks: allBooks
+    }
+    res.send(data)
   })
 })
 
@@ -28,7 +40,7 @@ router.post('/trade', (req, res) => {
   User.findOne({_id: req.user._id}).then( user => {
     user.trade = [ ...user.trade, req.body.trade ]
     user.save()
-    console.log(user)
+    res.send(true)
   } )
   User.findOne({_id: req.body.trade.userWish}).then( user => {
     user.trade = [ ...user.trade, req.body.trade ]
@@ -36,6 +48,20 @@ router.post('/trade', (req, res) => {
     console.log(user)
   } )
 })
+
+router.post('/canceltrade', (req, res) => {
+  User.findOne({_id: req.user._id}).then( user => {
+    let newtrade = user.trade.filter( item => {
+      return item.bookWish !== req.body.bookTrade
+    } )
+    user.trade = newtrade 
+    user.save()
+    res.send(false)
+  } )
+
+})
+
+
 
 // add book
 

@@ -10,14 +10,26 @@
         </div>
         <div v-if="user !== id">
           <div class="row tradeBox">
-            <div class="card-title col s12 m8">
-              <select v-model="selected" :key="index" v-for="(userbook, index) in books">
-                <option disabled value="">Please select one of your books to trade</option>
-                <option>{{userbook}}</option>
-              </select>
-            </div>
+            <div v-if="isTrade === false">
+              <div class="card-title col s12 m8">
+                <select v-model="selected" :key="index" v-for="(userbook, index) in books">
+                  <option disabled value="">Please select one of your books to trade</option>
+                  <option>{{userbook}}</option>
+                </select>
+              </div>
             <div class="col s12 m4">
               <button class="btn blue lighten-1 trade" v-on:click="getTrade">trade</button>
+            </div>
+          </div>
+            <div v-else>
+                <div class="card-title col s12 m8">
+                   <select disabled v-model="selected" :key="index" v-for="(userbook, index) in books">
+                     <option disabled value="">{{bookOffer}}</option>
+                   </select>
+                </div>
+            <div class="col s12 m4">
+              <button class="btn blue lighten-1 trade" v-on:click="cancelTrade">cancel trade</button>
+            </div>
             </div>
           </div>
         </div>
@@ -31,7 +43,9 @@ export default {
   data() {
     return {
       data: "",
-      selected: ''
+      selected: '',
+      isTrade: false,
+      bookOffer: ''
     };
   },
   props: {
@@ -40,6 +54,15 @@ export default {
     book: String,
     user: String,
     books: Array,
+    tradingBooks: Array
+  },
+  mounted() {
+    this.tradingBooks.map( item => {
+      if(item.bookWish === this.book) {     
+        this.isTrade = true
+        this.bookOffer = item.bookOffer
+      }
+    })
   },
   methods: {
     getTrade() {
@@ -63,15 +86,31 @@ export default {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({ trade: newTrade})
-      }).then( () => { 
+      }).then( (data) => { 
         alert('your trade request has been sended')
-
-      } )
+         this.isTrade = true
+      })
       }
+    },
+    cancelTrade() {
+      let bookTradeName = this.book
+      fetch('/api/canceltrade', {
+             method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ bookTrade: bookTradeName})
+      }).then( (data) => { 
+        alert('trade request has been deleted')
+        this.isTrade = false
+      } )
+
     }
   }
-
 };
+
+
 </script>
 
 <style scoped>
