@@ -50,15 +50,15 @@ export default {
   },
   props: {
     name: String,
-    id: String,
+    id: String, // requested id
     book: String,
-    user: String,
+    user: String, // requester id
     books: Array,
     tradingBooks: Array
   },
   mounted() {
     this.tradingBooks.map( item => {
-      if(item.bookWish === this.book) {     
+      if(item.bookWish ===  this.book) {     
         this.isTrade = true
         this.bookOffer = item.bookOffer
       }
@@ -67,7 +67,7 @@ export default {
   methods: {
     getTrade() {
       if(this.selected === '') {
-        alert('please select one of your books to trade')
+  alert('please select one of your books to trade')
       } else {
       let newTrade = {
         userOffer: this.user,
@@ -93,7 +93,11 @@ export default {
       }
     },
     cancelTrade() {
-      let bookTradeName = this.book
+      let bookTradeName = {
+        book: this.book,
+        requester: this.user,
+        requested: this.id
+      }
       fetch('/api/canceltrade', {
              method: 'POST',
               headers: {

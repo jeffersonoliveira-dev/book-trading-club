@@ -2,17 +2,14 @@
   <div>
      <ul>
        <li :key="index" v-for="(trade, index) in data">
-       <div v-if="type === 'A'">
-          A
+       <div v-if="id === userOffer">
+          <!-- waiting to accept request -->
         </div>
-        <div v-else-if="type === 'B'">
-          B
-        </div>
-        <div v-else-if="type === 'C'">
-          C
+        <div v-else-if="id === userWish">
+           <!-- you receive a book trade request --> 
         </div>
         <div v-else>
-          Not A/B/C
+           <!-- you traded with annon --> 
         </div>
        </li>
      </ul>
@@ -24,7 +21,7 @@ export default {
   data() {
     return {
       data: '',
-      id: '' 
+      user: '' 
     }
   },
   mounted() {
