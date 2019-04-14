@@ -2,10 +2,9 @@
 
 to-do
 
->> trade button on books@dashboard
 
->> trade API and make it work
+setup rails app
 
->> create more accounts and start to trade and push to history/notifications
+get react working
 
->> get ready ro deploy [ maybe docker or somethings idk ]
+maybe sv / cl separatly? idk 
