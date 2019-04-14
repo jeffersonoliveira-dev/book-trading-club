@@ -84,9 +84,9 @@ export default {
 .items .item {
   flex: 1 0 100%;
   box-sizing: border-box;
-  padding: 10px;
   display: inline;
-  margin-left: 10px;
+  position: relative;
+  bottom: 35px;
 }
 
 

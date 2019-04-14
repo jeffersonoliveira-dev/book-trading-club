@@ -1,7 +1,7 @@
 <template>
   <ul class="books">
     <li :key="index" v-for="(item, index) in data">
-      <BookCard :book="item.book" :name="item.name" :id="item.id"/>
+    <BookCard :user="item.user" :books="books" :tradingBooks="tradingBooks" :book="item.book" :name="item.name" :id="item.id"/>
     </li>
   </ul>
 </template>
@@ -17,7 +17,8 @@ export default {
   data() {
     return {
       data: "",
-      books: ""
+      books: [],
+      tradingBooks: [],
     };
   },
   mounted() {
@@ -33,14 +34,20 @@ export default {
     getBooks() {
       fetch("/api/books", {
         headers: {
-          Accept: "application/json",
+          "Accept": "application/json",
           "Content-Type": "application/json"
         },
         method: "get"
       })
         .then(response => response.json())
         .then(data => {
-          this.data = data;
+          this.data = data.allBooks;
+          data.allBooks.map(item => {
+            if(item.id === item.user) {
+              this.books = [...this.books, item.book]
+            }
+          })
+          this.tradingBooks = data.tradingBooks
         });
     }
   }
