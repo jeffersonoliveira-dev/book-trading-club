@@ -3,21 +3,61 @@
      <ul>
        <li :key="index" v-for="(trade, index) in data">
        <div v-if="trade.status === 'offer'">
-          <!-- waiting to accept request -->
-          <h1>you've send a book trade request with your "{{trade.bookOffer}}" for "{{trade.bookWish}}"</h1>
-        </div>
-        <div v-else-if="trade.status === 'wish'">
-           <!-- you receive a book trade request --> 
-
-           <h1>You've received a trade request offering the {{trade.bookOffer}} for your {{trade.bookWish}}</h1>
+            <div class="row">
+              <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                  <div class="card-content white-text">
+                    <span class="card-title">
+                      you've send a book trade request with your "{{trade.bookOffer}}" for "{{trade.bookWish}}"
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+       </div>
+       <div v-else-if="trade.status === 'wish'">
+           <div class="row">
+              <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                  <div class="card-content white-text">
+                    <span class="card-title">
+                      You've received a trade request offering the {{trade.bookOffer}} for your {{trade.bookWish}}
+                    </span>
+                  </div>
+                   <div class="card-action">
+                     <!-- buttons here -->
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
         <div v-else>
            <!-- you traded with annon --> 
            <div v-if="this.user === userOffer">
-             <h1>you traded your {{trade.bookOffer}} for {{trade.bookWish}}</h1>
+             <div class="row">
+              <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                  <div class="card-content white-text">
+                    <span class="card-title">
+                       you traded your {{trade.bookOffer}} for {{trade.bookWish}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
            </div>
            <div v-else>
-             <h1>you accepted a trade of your {{trade.bookWish}} for {{trade.bookOffer}}</h1>
+             <div class="row">
+              <div class="col s12 m12">
+                <div class="card blue-grey darken-1">
+                  <div class="card-content white-text">
+                    <span class="card-title">
+                      you accepted a trade of your {{trade.bookWish}} for {{trade.bookOffer}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
            </div>
         </div>
        </li>
