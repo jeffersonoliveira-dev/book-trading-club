@@ -25,14 +25,12 @@
                     </span>
                   </div>
                    <div class="card-action">
-                     <!-- buttons here -->
                   </div>
                 </div>
               </div>
             </div>
         </div>
         <div v-else>
-           <!-- you traded with annon --> 
            <div v-if="this.user === userOffer">
              <div class="row">
               <div class="col s12 m12">
