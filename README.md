@@ -2,16 +2,6 @@
 
 to-do
 
->> need responsiveness on dashboard // fix menu button 
-
-
-setup rails app
-
-
+>> dashboard need to render the books
+>> notification route must work
 >> get ready ro deploy [ maybe docker or somethings idk ]
-
-
-
-thinking of revamping the app
-
-will be rails or django 
