@@ -49,8 +49,7 @@ export default {
              if(response.status === 401) {
                return alert('wrong password/email')
              } else {
-//               this.$router.push('dashboard')
-              window.location.href = window.location.href.slice(0,-6) + '/dashboard'
+               this.$router.push('dashboard')
              }
            } )
     }

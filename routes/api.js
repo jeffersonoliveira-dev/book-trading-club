@@ -32,6 +32,7 @@ router.get("/books", (req, res) => {
 
 router.get("/trades", (req, res) => {
   // usar req.user.name e req.user.trade para indentificar quem é o offer e o wish
+  res.send({trade: req.user.trade, user: req.user._id})
 });
 
 // get user books
@@ -90,7 +91,6 @@ router.post("/canceltrade", (req, res) => {
   res.send(false);
 });
 
-// add book
 
 router.post("/add", (req, res) => {
   User.findOne({ _id: req.user._id }).then(user => {
@@ -100,7 +100,6 @@ router.post("/add", (req, res) => {
   });
 });
 
-// remove book
 
 router.post("/remove", (req, res) => {
   User.findOne({ _id: req.user._id }).then(user => {
@@ -129,6 +128,5 @@ router.post("/profile", (req, res) => {
   });
 });
 
-// trade api here
 
 module.exports = router;
