@@ -2,6 +2,5 @@
 
 to-do
 
->> dashboard need to render the books
->> notification route must work
+>> create cards with accept/reject buttons for trading on /history
 >> get ready ro deploy [ maybe docker or somethings idk ]
