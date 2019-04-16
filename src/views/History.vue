@@ -11,6 +11,10 @@
                       you've send a book trade request with your "{{trade.bookOffer}}" for "{{trade.bookWish}}"
                     </span>
                   </div>
+                  <div className="col s12">
+                    <button>cancel</button>
+
+                  </div>
                 </div>
               </div>
             </div>
