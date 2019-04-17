@@ -9,11 +9,12 @@
                   <div class="card-content white-text">
                     <span class="card-title">
                       you've send a book trade request with your "{{trade.bookOffer}}" for "{{trade.bookWish}}"
-                    </span>
-                  </div>
-                  <div class="col s12">
-                    <button>cancel</button>
-
+                      <div class="card-action">
+                     <div class="col s12">
+                      <button class="btn grey">cancel</button>
+                     </div>
+                      </div>
+                   </span>
                   </div>
                 </div>
               </div>
@@ -28,13 +29,13 @@
                       You've received a trade request offering the {{trade.bookOffer}} for your {{trade.bookWish}}
                     </span>
                   </div>
-                   <div class="card-action">
+                   <div class="card-action container">
                      <div class="row">
-                       <div class="col s6">
-                         <button>
+                       <div class="col s12">
+                         <button class="btn blue accept">
                            accept
                          </button>
-                         <button>
+                         <button class="btn red reject">
                            reject
                          </button>
                        </div>
@@ -108,6 +109,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>
