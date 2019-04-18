@@ -6,6 +6,8 @@
 .pnp.js
 /db/database.js
 
+/.vscode
+
 # testing
 /coverage
 
