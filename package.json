@@ -1,0 +1,23 @@
+{
+  "name": "book-trading-club",
+  "version": "1.0.0",
+  "description": "book trading club from free code camp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "start": "concurrently \"cd server && node server.js\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cardbeat/book-trading-club.git"
+  },
+  "author": "jefferson oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cardbeat/book-trading-club/issues"
+  },
+  "homepage": "https://github.com/Cardbeat/book-trading-club#readme",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
