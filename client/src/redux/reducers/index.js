@@ -5,10 +5,14 @@ const initialState = {
   notification: [],
   trades: [],
   user: '',
-}
+};
 
- const rootReducer  = ( state=initialState, action ) => {
+const rootReducer = (state = initialState, action) => {
   // action switch here
-}
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
 
-export default rootReducer
+export default rootReducer;
