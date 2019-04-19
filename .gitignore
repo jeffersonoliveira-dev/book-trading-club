@@ -14,7 +14,7 @@
 # production
 /build
 
-/app/src/secret
+/app/src/secret/config.js
 
 # misc
 .DS_Store
