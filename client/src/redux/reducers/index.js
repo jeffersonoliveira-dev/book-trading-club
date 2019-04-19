@@ -1,6 +1,4 @@
-import {
-
-} from '../actions/actionTypes'
+// import {} from '../actions/actionTypes'
 
 const initialState = {
   auth: false,
@@ -9,6 +7,8 @@ const initialState = {
   user: '',
 }
 
-const rootReducer  = ( state=initialState, action ) => {
+ const rootReducer  = ( state=initialState, action ) => {
   // action switch here
 }
+
+export default rootReducer
