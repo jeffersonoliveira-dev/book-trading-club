@@ -1,3 +1,6 @@
 # in progress
 
-need to delete everything and do it all over again
+-[ ] auth refs to rt db
+-[ ] pages
+-[ ] trades
+
