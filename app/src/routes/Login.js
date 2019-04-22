@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import config from '../secret/config';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from 'firebase';
+import('firebase/firestore');
+
 firebase.initializeApp(config);
+const database = firebase.firestore();
 
 export default class Login extends Component {
   state = {
@@ -17,6 +20,10 @@ export default class Login extends Component {
     callbacks: {
       signInSuccessWithAuthResult: (authResult, redirectUrl) => {
         console.log(authResult.user);
+        let username = authResult.user.displayName;
+        database.collection('users').add({
+          // put refs here
+        });
         // making the ref
         // create ref with authResult.user.uid and then call real time db
         // problably making this a component to user at the login or get rid of the sign up maybe?
