@@ -15,8 +15,9 @@ export default class Login extends Component {
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        console.log(authResult.user.uid);
+      signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+        console.log(authResult.user);
+        // making the ref
         // create ref with authResult.user.uid and then call real time db
         // problably making this a component to user at the login or get rid of the sign up maybe?
         // if account doesnt exist before, after checking user.uid > redirect to profile settings where the city and state will be chosen
