@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect, withRouter} from 'react-router-dom';
 import config from '../secret/config';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from 'firebase';
@@ -7,7 +8,7 @@ import('firebase/firestore');
 firebase.initializeApp(config);
 const database = firebase.firestore();
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     isSignedIn: false, // Local signed-in state.
   };
@@ -19,18 +20,26 @@ export default class Login extends Component {
     ],
     callbacks: {
       signInSuccessWithAuthResult: (authResult, redirectUrl) => {
-        console.log(authResult.user);
-        let username = authResult.user.displayName;
-        database.collection('users').add({
-          // put refs here
+        let checkDoc = database.collection('users').doc(authResult.user.uid);
+        checkDoc.get().then(doc => {
+          if (doc.exists) {
+            this.props.history.push('/dashboard');
+          } else {
+            let newUser = database.collection('users');
+            console.log(authResult.user.displayName);
+            newUser
+              .doc(authResult.user.uid)
+              .set({
+                name: authResult.user.displayName,
+                city: '',
+                state: '',
+                books: [],
+                trades: [],
+              })
+              .then(() => this.history.push('/profile')); // change when redirect
+          }
         });
-        // making the ref
-        // create ref with authResult.user.uid and then call real time db
-        // problably making this a component to user at the login or get rid of the sign up maybe?
-        // if account doesnt exist before, after checking user.uid > redirect to profile settings where the city and state will be chosen
-        // else > dashboard
-
-        return true;
+        return false;
       },
     },
   };
@@ -56,3 +65,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(Login);
