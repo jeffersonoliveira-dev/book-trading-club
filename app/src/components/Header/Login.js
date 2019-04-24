@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Redirect, withRouter} from 'react-router-dom';
-import config from '../secret/config';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import config from '../../secret/config';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from 'firebase';
 import('firebase/firestore');
+import {addUser} from '../../redux/actions/addUser';
 
 firebase.initializeApp(config);
 const database = firebase.firestore();
@@ -14,15 +16,14 @@ class Login extends Component {
   };
   uiConfig = {
     signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    ],
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
       signInSuccessWithAuthResult: (authResult, redirectUrl) => {
         let checkDoc = database.collection('users').doc(authResult.user.uid);
         checkDoc.get().then(doc => {
           if (doc.exists) {
+            console.log(doc.data());
+            this.props.addUser(doc.data());
             this.props.history.push('/dashboard');
           } else {
             let newUser = database.collection('users');
@@ -36,7 +37,7 @@ class Login extends Component {
                 books: [],
                 trades: [],
               })
-              .then(() => this.history.push('/profile')); // change when redirect
+              .then(() => this.props.history.push('/profile')); // change when redirect
           }
         });
         return false;
@@ -66,4 +67,7 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+export default connect(
+  null,
+  {addUser},
+)(Login);
