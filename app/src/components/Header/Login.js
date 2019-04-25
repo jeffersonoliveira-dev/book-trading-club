@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import config from '../../secret/config';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import * as firebase from 'firebase';
-import('firebase/firestore');
 import {addUser} from '../../redux/actions/addUser';
+import * as firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import('firebase/firestore');
 
 firebase.initializeApp(config);
 const database = firebase.firestore();
@@ -22,12 +22,10 @@ class Login extends Component {
         let checkDoc = database.collection('users').doc(authResult.user.uid);
         checkDoc.get().then(doc => {
           if (doc.exists) {
-            console.log(doc.data());
             this.props.addUser(doc.data());
             this.props.history.push('/dashboard');
           } else {
             let newUser = database.collection('users');
-            console.log(authResult.user.displayName);
             newUser
               .doc(authResult.user.uid)
               .set({
@@ -70,4 +68,4 @@ class Login extends Component {
 export default connect(
   null,
   {addUser},
-)(Login);
+)(withRouter(Login));
