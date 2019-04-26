@@ -5,7 +5,8 @@ const initialState = {
   auth: false,
   notification: [],
   trades: [],
-  user: '',
+  userData: '',
+  userToken: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,8 +16,9 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         auth: true,
-        trades: action.trades,
-        user: action.user,
+        trades: action.userData.trades,
+        userData: action.userData,
+        userToken: action.userToken,
       };
     default:
       return state;
