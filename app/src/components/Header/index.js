@@ -14,6 +14,8 @@ import Search from './Search';
 import UserLogged from './UserLogged';
 import {connect} from 'react-redux';
 import UserNotLogged from './UserNotLogged';
+import {Link, Redirect, withRouter} from 'react-router-dom';
+
 const mapStateToProps = state => {
   return {
     auth: state.auth,
@@ -45,8 +47,13 @@ class Header extends React.Component {
     this.setState({mobileMoreAnchorEl: null});
   };
 
+  componentWillMount() {
+    if (this.props.auth === false) {
+      this.props.history.push('/');
+    }
+  }
+
   render() {
-    console.log(this.state);
     const {anchorEl, mobileMoreAnchorEl} = this.state;
     const {classes} = this.props;
     const isMenuOpen = Boolean(anchorEl);
@@ -59,8 +66,12 @@ class Header extends React.Component {
         transformOrigin={{vertical: 'top', horizontal: 'right'}}
         open={isMenuOpen}
         onClose={this.handleMenuClose}>
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>
+          <Link to="/profile">Profile</Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>
+          <Link to="/books">My Books</Link>
+        </MenuItem>
       </Menu>
     );
 
@@ -95,6 +106,7 @@ class Header extends React.Component {
         </MenuItem>
       </Menu>
     );
+
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -127,4 +139,4 @@ class Header extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Header));
+export default connect(mapStateToProps)(withRouter(withStyles(styles)(Header)));
