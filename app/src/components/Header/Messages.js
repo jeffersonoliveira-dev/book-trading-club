@@ -15,4 +15,7 @@ class Messages extends Component {
   }
 }
 
+// badgeContent = aos trades =>
+// fazer algo parecido com o profile pras trades aparecerem com os botoes de aceitar // negar
+
 export default Messages;
