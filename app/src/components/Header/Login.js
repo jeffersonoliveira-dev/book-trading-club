@@ -21,8 +21,9 @@ class Login extends Component {
       signInSuccessWithAuthResult: (authResult, redirectUrl) => {
         let checkDoc = database.collection('users').doc(authResult.user.uid);
         checkDoc.get().then(doc => {
+          let auth = authResult.user.uid;
           if (doc.exists) {
-            this.props.addUser(doc.data());
+            this.props.addUser({userData: doc.data(), userToken: auth});
             this.props.history.push('/dashboard');
           } else {
             let newUser = database.collection('users');
