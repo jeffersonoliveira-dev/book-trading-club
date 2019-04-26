@@ -7,12 +7,18 @@ class Notification extends Component {
   render() {
     return (
       <IconButton color="inherit">
-        <Badge badgeContent={17} color="secondary">
+        <Badge badgeContent={2} color="secondary">
           <NotificationsIcon />
         </Badge>
       </IconButton>
     );
   }
 }
+
+// badgeContent =  notification.store.length
+// onClick =  length =  0
+
+// criar um metodo pra visualizar update direto
+// trade => oferecido[ notification ] => deal => oferecedor [ notification ]
 
 export default Notification;
