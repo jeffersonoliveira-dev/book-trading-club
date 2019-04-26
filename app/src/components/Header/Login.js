@@ -25,6 +25,7 @@ class Login extends Component {
           if (doc.exists) {
             this.props.addUser({userData: doc.data(), userToken: auth});
             this.props.history.push('/dashboard');
+            // save into localStorage
           } else {
             let newUser = database.collection('users');
             newUser
@@ -35,6 +36,7 @@ class Login extends Component {
                 state: '',
                 books: [],
                 trades: [],
+                notification: [],
               })
               .then(() => this.props.history.push('/profile')); // change when redirect
           }
