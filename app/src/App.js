@@ -4,6 +4,7 @@ import Header from './components/Header/index';
 import Home from './routes/Home';
 import Dashboard from './routes/Dashboard';
 import Profile from './routes/Profile';
+import Books from './routes/Books';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <Route path="/" exact component={Home} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/profile" component={Profile} />
+        <Route path="/books" component={Books} />
       </Router>
     );
   }
