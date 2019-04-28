@@ -14,7 +14,7 @@ import Search from './Search';
 import UserLogged from './UserLogged';
 import {connect} from 'react-redux';
 import UserNotLogged from './UserNotLogged';
-import {Link, Redirect, withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 const mapStateToProps = state => {
   return {

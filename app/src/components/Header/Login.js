@@ -28,17 +28,21 @@ class Login extends Component {
             // save into localStorage
           } else {
             let newUser = database.collection('users');
+            let newData = {
+              name: authResult.user.displayName,
+              city: '',
+              state: '',
+              books: [],
+              trades: [],
+              notification: [],
+            };
             newUser
               .doc(authResult.user.uid)
-              .set({
-                name: authResult.user.displayName,
-                city: '',
-                state: '',
-                books: [],
-                trades: [],
-                notification: [],
-              })
-              .then(() => this.props.history.push('/profile')); // change when redirect
+              .set(newData)
+              .then(() => {
+                this.props.addUser({userData: newData, userToken: auth});
+                this.props.history.push('/profile');
+              });
           }
         });
         return false;
