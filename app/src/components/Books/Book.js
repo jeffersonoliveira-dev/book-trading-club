@@ -1,7 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Book extends Component {
-  render() {
-    return <div>book</div>;
-  }
-}
+const Book = (name, author) => {
+  return (
+    <div>
+      <div>{name}</div>
+      <div>{author}</div>
+    </div>
+  );
+};
+
+export default Book;
