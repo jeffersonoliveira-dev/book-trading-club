@@ -1,18 +1,14 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import config from '../../secret/config';
 import {addUser} from '../../redux/actions/addUser';
-import * as firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import('firebase/firestore');
-
-firebase.initializeApp(config);
-const database = firebase.firestore();
+import * as firebase from 'firebase';
+import database from '../../firebase';
 
 class Login extends Component {
   state = {
-    isSignedIn: false, // Local signed-in state.
+    isSignedIn: false,
   };
   uiConfig = {
     signInFlow: 'popup',
