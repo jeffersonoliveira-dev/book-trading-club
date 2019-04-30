@@ -19,7 +19,13 @@ class Login extends Component {
         checkDoc.get().then(doc => {
           let auth = authResult.user.uid;
           if (doc.exists) {
-            this.props.addUser({userData: doc.data(), userToken: auth});
+            this.props.addUser({
+              userData: doc.data(),
+              userToken: auth,
+              auth: true,
+              books: doc.data().books,
+              trades: doc.data().trades,
+            });
             this.props.history.push('/dashboard');
             // save into localStorage
           } else {
@@ -37,6 +43,13 @@ class Login extends Component {
               .set(newData)
               .then(() => {
                 this.props.addUser({userData: newData, userToken: auth});
+                this.props.addUser({
+                  userData: newData,
+                  userToken: auth,
+                  auth: true,
+                  books: newData.books,
+                  trades: newData.trades,
+                });
                 this.props.history.push('/profile');
               });
           }
