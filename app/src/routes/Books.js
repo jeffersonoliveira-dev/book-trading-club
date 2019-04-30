@@ -1,30 +1,29 @@
-import React, {Component} from 'react';
-import database from '../firebase';
-import {connect} from 'react-redux';
-import Book from '../components/Books/Book';
-import InputBase from '@material-ui/core/InputBase';
+import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import styles from '../components/Books/styles/Book';
-const mapStateToProps = state => ({
-  books: state.userData.books,
-});
 
-class Books extends Component {
-  render() {
-    const {classes} = this.props;
-    const Books = this.props.books.map(book => {
-      return <Book />;
-    });
+function Books(props) {
+  const {classes} = props;
 
-    return (
-      <div>
-        <div className={classes.center}>
-          <InputBase placeholder="Search…" />
-        </div>
-        <div className="grid">{Books}</div>
-      </div>
-    );
-  }
+  return (
+    <div className={classes.container}>
+      <Grid container spacing={24}>
+        <Grid item xs={12}>
+          <form class={classes.item} onSubmit={e => e.preventDefault()}>
+            <input
+              type="text"
+              placeholder="new book?"
+              id="book"
+              class={classes.text}
+            />
+            <input type="submit" value="add book" class={classes.submit} />
+          </form>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Books));
+// make grid better
+export default withStyles(styles)(Books);
