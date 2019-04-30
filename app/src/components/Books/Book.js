@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Book = (name, author) => {
-  return (
-    <div>
-      <div>{name}</div>
-      <div>{author}</div>
-    </div>
-  );
-};
+class Book extends React.Component {
+  render() {
+    return (
+      <div>
+        <div>{this.props.name}</div>
+      </div>
+    );
+  }
+}
+
+// name , username,
 
 export default Book;
