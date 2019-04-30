@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import styles from '../components/Books/styles/Book';
 import Book from '../components/Books/Book';
 import {connect} from 'react-redux';
-import {addBook} from '../redux/actions/addBook';
+import {updateBooks} from '../redux/actions/updateBooks';
 import database from '../firebase';
 
 const mapStateToProps = state => ({
@@ -16,12 +16,14 @@ class Books extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     let book = document.getElementById('book').value;
-    this.props.addBook(book);
     let newBooks = [...this.props.books, book];
     database
       .collection('users')
       .doc(this.props.userToken)
-      .update({books: newBooks});
+      .update({books: newBooks})
+      .then(() => {
+        this.props.updateBooks(newBooks);
+      });
     document.getElementById('book').value = '';
   };
 
@@ -35,12 +37,12 @@ class Books extends React.Component {
       <div className={classes.container}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <form class={classes.item} onSubmit={this.handleSubmit}>
+            <form className={classes.item} onSubmit={this.handleSubmit}>
               <input
                 type="text"
                 placeholder="new book?"
                 id="book"
-                class={classes.text}
+                className={classes.text}
               />
               <input type="submit" value="add book" class={classes.submit} />
             </form>
@@ -56,5 +58,5 @@ class Books extends React.Component {
 
 export default connect(
   mapStateToProps,
-  {addBook},
+  {updateBooks},
 )(withStyles(styles)(Books));
