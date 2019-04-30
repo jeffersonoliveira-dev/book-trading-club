@@ -17,6 +17,10 @@ const styles = theme => ({
   text: {
     width: '400px',
   },
+  book: {
+    textAlign: 'center',
+    padding: theme.spacing.unit * 2,
+  },
 });
 
 // center horizontally
