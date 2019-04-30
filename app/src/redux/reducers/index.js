@@ -1,7 +1,6 @@
 // import {} from '../actions/actionTypes'
 import {ADD_USER} from '../actions/actionTypes';
-import {ADD_BOOK} from '../actions/actionTypes';
-import {REMOVE_BOOK} from '../actions/actionTypes';
+import {UPDATE_BOOKS} from '../actions/actionTypes';
 
 const initialState = {
   auth: false,
@@ -23,12 +22,7 @@ const rootReducer = (state = initialState, action) => {
         userData: action.userData,
         userToken: action.userToken,
       };
-    case ADD_BOOK:
-      return {
-        ...state,
-        books: [...state.books, action.book],
-      };
-    case REMOVE_BOOK:
+    case UPDATE_BOOKS:
       return {
         ...state,
         books: [...action.books],
