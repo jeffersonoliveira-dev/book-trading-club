@@ -30,27 +30,37 @@ class Books extends React.Component {
   render() {
     const {classes} = this.props;
     const Books = this.props.books.map((book, index) => {
-      return <Book name={book} key={index} />;
+      return (
+        <Grid item xs>
+          <div className={classes.item}>
+            <Book name={book} key={index} />
+          </div>
+        </Grid>
+      );
     });
 
     return (
-      <div className={classes.container}>
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <form className={classes.item} onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                placeholder="new book?"
-                id="book"
-                className={classes.text}
-              />
-              <input type="submit" value="add book" class={classes.submit} />
-            </form>
+      <div>
+        <div className={classes.container}>
+          <Grid container spacing={24}>
+            <Grid item xs={12}>
+              <form className={classes.item} onSubmit={this.handleSubmit}>
+                <input
+                  type="text"
+                  placeholder="new book?"
+                  id="book"
+                  className={classes.text}
+                />
+                <input type="submit" value="add book" class={classes.submit} />
+              </form>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <div className={classes.book}>{Books}</div>
+        </div>
+        <div className={classes.container}>
+          <Grid container spacing={24}>
+            {Books}
           </Grid>
-        </Grid>
+        </div>
       </div>
     );
   }
