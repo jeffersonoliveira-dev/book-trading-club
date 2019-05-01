@@ -31,7 +31,7 @@ class Books extends React.Component {
     const {classes} = this.props;
     const Books = this.props.books.map((book, index) => {
       return (
-        <Grid item xs>
+        <Grid item xs key={index}>
           <Book name={book} key={index} />
         </Grid>
       );
@@ -49,7 +49,11 @@ class Books extends React.Component {
                   id="book"
                   className={classes.text}
                 />
-                <input type="submit" value="add book" class={classes.submit} />
+                <input
+                  type="submit"
+                  value="add book"
+                  className={classes.submit}
+                />
               </form>
             </Grid>
           </Grid>
