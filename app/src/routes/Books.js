@@ -32,9 +32,7 @@ class Books extends React.Component {
     const Books = this.props.books.map((book, index) => {
       return (
         <Grid item xs>
-          <div className={classes.item}>
-            <Book name={book} key={index} />
-          </div>
+          <Book name={book} key={index} />
         </Grid>
       );
     });
