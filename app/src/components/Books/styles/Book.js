@@ -1,8 +1,4 @@
 const styles = theme => ({
-  center: {
-    margin: 'auto',
-    width: '50%',
-  },
   container: {
     flexGrow: 1,
   },
@@ -16,6 +12,10 @@ const styles = theme => ({
   },
   text: {
     width: '400px',
+  },
+  delete: {
+    float: 'right',
+    bottom: '10px',
   },
   book: {
     textAlign: 'center',
