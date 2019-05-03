@@ -47,8 +47,6 @@ class Book extends React.Component {
   }
 }
 
-// name , username,
-
 export default connect(
   mapStateToProps,
   {updateBooks},
