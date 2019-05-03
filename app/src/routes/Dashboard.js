@@ -5,35 +5,37 @@ import database from '../firebase';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
 import Book from '../components/Books/Book';
+import {updateAllBooks} from '../redux/actions/updateAllBooks';
+
+let mapStateToProps = state => ({
+  allBooks: state.allBooks,
+});
 
 class Dashboard extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      allBooks: [],
-    };
-  }
   componentWillMount() {
-    database.collection('users').onSnapshot(snap => {
-      // get notification if this changes
-      let allBooks = [];
-      snap.forEach(item => {
-        let token = item._key.path.segments.pop();
-        this.setState({
-          allBooks: [
-            ...this.state.allBooks,
-            {token: token, books: item.data().books, name: item.data().name},
-          ],
+    database
+      .collection('users')
+      .get()
+      .then(doc => {
+        let newBooks = [];
+        doc.forEach(user => {
+          let token = user._key.path.segments.pop();
+          newBooks = [
+            ...newBooks,
+            {
+              token: token,
+              books: user.data().books,
+              name: user.data().name,
+            },
+          ];
         });
+        this.props.updateAllBooks(newBooks);
       });
-      console.log(this.state.allBooks);
-    });
   }
 
   render() {
     const {classes} = this.props;
-
-    let Books = this.state.allBooks.map((user, index) => {
+    let Books = this.props.allBooks.map((user, index) => {
       let userBooks = user.books.map((book, index) => {
         return (
           <Grid item xs key={index}>
@@ -43,7 +45,6 @@ class Dashboard extends Component {
       });
       return userBooks;
     });
-    console.log(Books);
     return (
       <div className={classes.container}>
         <Grid container spacing={24}>
@@ -54,4 +55,7 @@ class Dashboard extends Component {
   }
 }
 
-export default connect()(withStyles(styles)(Dashboard));
+export default connect(
+  mapStateToProps,
+  {updateAllBooks},
+)(withStyles(styles)(Dashboard));
