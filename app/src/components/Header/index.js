@@ -115,7 +115,7 @@ class Header extends React.Component {
               className={classes.menuButton}
               color="inherit"
               aria-label="Open drawer">
-              BTC
+              {this.props.auth ? <Link to="/dashbord">BTC</Link> : 'BTC'}
             </IconButton>
             {this.props.auth && <Search />}
             <div className={classes.grow} />
