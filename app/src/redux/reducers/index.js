@@ -1,6 +1,7 @@
 // import {} from '../actions/actionTypes'
 import {ADD_USER} from '../actions/actionTypes';
 import {UPDATE_BOOKS} from '../actions/actionTypes';
+import {UPDATE_ALL_BOOKS} from '../actions/actionTypes';
 
 const initialState = {
   auth: false,
@@ -9,6 +10,7 @@ const initialState = {
   userData: '',
   userToken: '',
   books: [],
+  allBooks: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -26,6 +28,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         books: [...action.books],
+      };
+    case UPDATE_ALL_BOOKS:
+      return {
+        ...state,
+        allBooks: action.allBooks,
       };
     default:
       return state;
