@@ -1,16 +1,37 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import database from '../firebase';
 import styles from '../components/Books/styles/Book';
+import {connect} from 'react-redux';
+
+const mapStateToProps = state => ({
+  token: state.userToken,
+  name: state.userData.name,
+  city: state.userData.city,
+  state: state.userData.state,
+});
 
 class Profile extends React.Component {
+  handleSubmit = event => {
+    event.preventDefault();
+    let data = {
+      name: document.getElementById('name').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+    };
+    database
+      .collection('users')
+      .doc(this.props.token)
+      .update({
+        name: data.name,
+        city: data.city,
+        state: data.state,
+      })
+      .then(() => alert('Profile updated!'));
+  };
+
   render() {
     const {classes} = this.props;
 
@@ -21,23 +42,23 @@ class Profile extends React.Component {
             <div className={classes.center}>
               <Grid item xs={12}>
                 <TextField
-                  id="input-with-icon-grid"
-                  value="Name"
-                  label="With a grid"
+                  id="name"
+                  defaultValue={this.props.name}
+                  label="Name"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  id="input-with-icon-grid"
-                  value="City"
-                  label="With a grid"
+                  id="city"
+                  defaultValue={this.props.city}
+                  label="City"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  id="input-with-icon-grid"
-                  value="State"
-                  label="With a grid"
+                  id="state"
+                  defaultValue={this.props.state}
+                  label="State"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -50,4 +71,4 @@ class Profile extends React.Component {
     );
   }
 }
-export default withStyles(styles)(Profile);
+export default connect(mapStateToProps)(withStyles(styles)(Profile));
