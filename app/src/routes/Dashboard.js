@@ -33,6 +33,7 @@ class Dashboard extends Component {
       });
   }
 
+  // change book with other functionality + trade button
   render() {
     const {classes} = this.props;
     let Books = this.props.allBooks.map((user, index) => {
