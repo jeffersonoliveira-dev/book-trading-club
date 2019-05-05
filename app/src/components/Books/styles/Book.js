@@ -4,7 +4,7 @@ const styles = theme => ({
   },
   item: {
     padding: theme.spacing.unit * 2,
-    textAlign: 'center',
+    textAlign: 'justify',
     color: theme.palette.text.secondary,
   },
   submit: {
