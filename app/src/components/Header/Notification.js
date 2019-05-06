@@ -14,6 +14,7 @@ class Notification extends Component {
     );
   }
 }
+// trade ping here
 
 // badgeContent =  notification.store.length
 // onClick =  length =  0
