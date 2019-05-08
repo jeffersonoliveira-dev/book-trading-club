@@ -13,7 +13,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
   card: {
-    maxWidth: 400,
+    minWidth: 400,
   },
   media: {
     height: 0,
@@ -49,9 +49,9 @@ class DashBook extends React.Component {
 
     return (
       <Card className={classes.card}>
-        <CardHeader title="title name" />
+        <CardHeader title={this.props.book} />
         <CardContent>
-          <Typography component="p">book's owner</Typography>
+          <Typography component="p">{this.props.name}</Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton
