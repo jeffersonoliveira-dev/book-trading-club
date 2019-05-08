@@ -39,8 +39,8 @@ class Dashboard extends Component {
     let Books = this.props.allBooks.map((user, index) => {
       let userBooks = user.books.map((book, index) => {
         return (
-          <Grid item xs={12} key={index}>
-            <DashBook name={book} key={index} />
+          <Grid item xs key={index}>
+            <DashBook book={book} name={user.name} key={index} />
           </Grid>
         );
       });
