@@ -7,3 +7,4 @@
 - [ ] all books page and trade functionality
 
 
+// planning how I'm gonna make the trade schema
