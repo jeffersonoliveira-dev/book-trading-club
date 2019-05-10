@@ -8,3 +8,12 @@
 
 
 // planning how I'm gonna make the trade schema
+
+
+[
+    useroffer { name, token},
+    userWish, {name, token}
+    bookOffer,
+    book wish
+    status: deal/offer/wish/cancel
+]
