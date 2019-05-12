@@ -17,3 +17,5 @@
     book wish
     status: deal/offer/wish/cancel
 ]
+
+// already seen to the trade list or not
