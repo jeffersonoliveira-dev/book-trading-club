@@ -40,7 +40,12 @@ class Dashboard extends Component {
       let userBooks = user.books.map((book, index) => {
         return (
           <Grid item xs key={index}>
-            <DashBook book={book} name={user.name} key={index} />
+            <DashBook
+              book={book}
+              wishToken={user.token}
+              name={user.name}
+              key={index}
+            />
           </Grid>
         );
       });
