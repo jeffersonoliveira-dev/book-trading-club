@@ -17,6 +17,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
   books: state.books,
+  offerToken: state.userToken,
 });
 
 const styles = theme => ({
@@ -46,7 +47,7 @@ const styles = theme => ({
 });
 
 class DashBook extends React.Component {
-  state = {expanded: false};
+  state = {expanded: false, name: ''};
 
   handleExpandClick = () => {
     this.setState(state => ({expanded: !state.expanded}));
@@ -54,6 +55,13 @@ class DashBook extends React.Component {
 
   handleChange = name => event => {
     this.setState({[name]: event.target.value});
+  };
+
+  handleSubmit = event => {
+    console.log(this.state.name.length);
+    if (this.state.name.length > 0) {
+      // send trade here
+    }
   };
 
   render() {
@@ -92,6 +100,8 @@ class DashBook extends React.Component {
               </InputLabel>
               <NativeSelect
                 native
+                value={this.state.name}
+                onChange={this.handleChange('name')}
                 inputProps={{
                   name: 'book',
                   id: 'book-native-simple',
@@ -99,7 +109,7 @@ class DashBook extends React.Component {
                 <option value="" />
                 {options}
               </NativeSelect>
-              <input type="submit" value="trade" />
+              <input type="submit" value="trade" onClick={this.handleSubmit} />
             </FormControl>
           </CardContent>
         </Collapse>
