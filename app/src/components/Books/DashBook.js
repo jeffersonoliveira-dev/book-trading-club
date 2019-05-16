@@ -14,10 +14,13 @@ import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {connect} from 'react-redux';
+import database from '../../firebase';
+import firebase from 'firebase';
 
 const mapStateToProps = state => ({
   books: state.books,
   offerToken: state.userToken,
+  trades: state.trades,
 });
 
 const styles = theme => ({
@@ -47,7 +50,7 @@ const styles = theme => ({
 });
 
 class DashBook extends React.Component {
-  state = {expanded: false, name: ''};
+  state = {expanded: false, book: ''};
 
   handleExpandClick = () => {
     this.setState(state => ({expanded: !state.expanded}));
@@ -58,9 +61,38 @@ class DashBook extends React.Component {
   };
 
   handleSubmit = event => {
-    console.log(this.state.name.length);
-    if (this.state.name.length > 0) {
+    if (this.state.book.length > 0) {
       // send trade here
+      // name, wishToken, book
+      let randomID = Math.random()
+        .toString(36)
+        .substr(2, 9);
+
+      let requestTrade = {
+        tradeID: randomID,
+        bookOffer: this.state.book,
+        bookWish: this.props.book,
+        userWish: this.props.wishToken,
+        userOffer: this.props.offerToken,
+        status: 'request',
+      };
+
+      database
+        .collection('users')
+        .doc(this.props.offerToken)
+        .update({
+          trades: firebase.firestore.FieldValue.arrayUnion(requestTrade),
+        })
+        .then(() => {
+          database
+            .collection('users')
+            .doc(this.props.wishToken)
+            .update({
+              trades: firebase.firestore.FieldValue.arrayUnion(requestTrade),
+            });
+        });
+    } else {
+      alert('choose on of your books to offer as trade');
     }
   };
 
@@ -100,8 +132,8 @@ class DashBook extends React.Component {
               </InputLabel>
               <NativeSelect
                 native
-                value={this.state.name}
-                onChange={this.handleChange('name')}
+                value={this.state.book}
+                onChange={this.handleChange('book')}
                 inputProps={{
                   name: 'book',
                   id: 'book-native-simple',
