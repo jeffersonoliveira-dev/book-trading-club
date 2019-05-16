@@ -33,11 +33,11 @@ class Dashboard extends Component {
       });
   }
 
-  // change book with other functionality + trade button
   render() {
     const {classes} = this.props;
     let Books = this.props.allBooks.map((user, index) => {
       let userBooks = user.books.map((book, index) => {
+        console.log(user.token);
         return (
           <Grid item xs key={index}>
             <DashBook
