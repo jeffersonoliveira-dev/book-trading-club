@@ -6,6 +6,8 @@ import Dashboard from './routes/Dashboard';
 import Profile from './routes/Profile';
 import Books from './routes/Books';
 import Notifications from './routes/Notifications';
+import Messages from './routes/Messages'
+'
 
 class App extends Component {
   render() {
@@ -17,6 +19,7 @@ class App extends Component {
         <Route path="/profile" component={Profile} />
         <Route path="/books" component={Books} />
         <Route path="/notifications" component={Notifications} />
+        <Route path="/messages" component={Messages} />
       </Router>
     );
   }
