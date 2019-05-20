@@ -6,8 +6,7 @@ import Dashboard from './routes/Dashboard';
 import Profile from './routes/Profile';
 import Books from './routes/Books';
 import Notifications from './routes/Notifications';
-import Messages from './routes/Messages'
-'
+import Messages from './routes/Messages';
 
 class App extends Component {
   render() {
