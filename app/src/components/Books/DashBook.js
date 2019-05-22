@@ -75,6 +75,7 @@ class DashBook extends React.Component {
         userWish: this.props.wishToken,
         userOffer: this.props.offerToken,
         status: 'request',
+        read: false,
       };
 
       database
