@@ -1,6 +1,7 @@
 import {ADD_USER} from '../actions/actionTypes';
 import {UPDATE_BOOKS} from '../actions/actionTypes';
 import {UPDATE_ALL_BOOKS} from '../actions/actionTypes';
+import {UPDATE_TRADES} from '../actions/actionTypes';
 
 const initialState = {
   auth: false,
@@ -32,6 +33,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allBooks: action.allBooks,
+      };
+    case UPDATE_TRADES:
+      return {
+        ...state,
+        trades: action.trades,
       };
     default:
       return state;
