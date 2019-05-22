@@ -6,8 +6,19 @@ import {withStyles} from '@material-ui/core/styles';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Notification from './Notification';
 import Messages from './Messages';
+import database from '../../firebase';
+import {updateTrades} from '../../redux/actions/updateTrades';
+import {connect} from 'react-redux';
+
+let mapStateToProps = state => ({
+  token: state.userToken,
+});
 
 class UserLogged extends React.Component {
+  constructor(props) {
+    super();
+  }
+
   render() {
     const {
       classes,
@@ -41,4 +52,7 @@ class UserLogged extends React.Component {
   }
 }
 
-export default withStyles(styles)(UserLogged);
+export default connect(
+  mapStateToProps,
+  {updateTrades},
+)(withStyles(styles)(UserLogged));
