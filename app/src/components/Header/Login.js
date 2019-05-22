@@ -42,7 +42,6 @@ class Login extends Component {
               .doc(authResult.user.uid)
               .set(newData)
               .then(() => {
-                this.props.addUser({userData: newData, userToken: auth});
                 this.props.addUser({
                   userData: newData,
                   userToken: auth,
