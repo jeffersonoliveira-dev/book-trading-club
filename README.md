@@ -4,7 +4,7 @@
 - [x] Books page and CRUD functionality // almost there
 - [x] trade function
 - [x] create view functionality with number badges when firebase update // almost there
-- [ ] all books page and trade functionality(almost)
+- [x] all books page and trade functionality(almost)
 
 // todo
 
