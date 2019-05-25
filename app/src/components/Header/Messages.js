@@ -3,7 +3,6 @@ import {withRouter} from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MailIcon from '@material-ui/icons/Mail';
 import Badge from '@material-ui/core/Badge';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
 import styles from './styles/index';
@@ -32,6 +31,7 @@ class Messages extends Component {
   }
   render() {
     const {classes} = this.props;
+
     return (
       <IconButton color="inherit">
         <Badge
