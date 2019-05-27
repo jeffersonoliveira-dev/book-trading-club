@@ -1,5 +1,5 @@
 # in progress
-
+- [ ] redesign trade box
 - [x] redirecting when user isnt authenticated
 - [x] Books page and CRUD functionality // almost there
 - [x] trade function
