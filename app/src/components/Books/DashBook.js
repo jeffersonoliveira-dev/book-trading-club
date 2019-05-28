@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {connect} from 'react-redux';
 import database from '../../firebase';
 import firebase from 'firebase';
+import {updateTrades} from '../../redux/actions/updateTrades';
 
 const mapStateToProps = state => ({
   books: state.books,
@@ -91,6 +92,11 @@ class DashBook extends React.Component {
             .update({
               trades: firebase.firestore.FieldValue.arrayUnion(requestTrade),
             });
+          database
+            .collection('users')
+            .doc(this.props.wishToken)
+            .get()
+            .then(doc => this.props.updateTrades(doc.data().trades));
         });
     } else {
       alert('choose on of your books to offer as trade');
@@ -154,4 +160,7 @@ class DashBook extends React.Component {
 // selectors + input done
 // method to  submit trade request with all the info needed
 
-export default connect(mapStateToProps)(withStyles(styles)(DashBook));
+export default connect(
+  mapStateToProps,
+  {updateTrades},
+)(withStyles(styles)(DashBook));
