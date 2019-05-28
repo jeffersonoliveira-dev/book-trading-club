@@ -6,9 +6,12 @@ import Badge from '@material-ui/core/Badge';
 import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
 import styles from './styles/index';
+import database from '../../firebase';
+import {updateTrades} from '../../redux/actions/updateTrades';
 
 const mapStateToProps = state => ({
   trades: state.trades,
+  token: state.userToken,
 });
 
 class Messages extends Component {
@@ -18,7 +21,14 @@ class Messages extends Component {
       counter: 0,
     };
   }
+
   componentWillMount() {
+    let interval = setInterval(() => {
+      this.getCounter();
+    }, 1000);
+  }
+
+  getCounter() {
     let counter = 0;
     this.props.trades.map(trade => {
       if (trade.read === false) {
@@ -29,6 +39,24 @@ class Messages extends Component {
       counter: counter,
     });
   }
+
+  handleClick = state => {
+    this.props.history.push('/messages');
+    let newTrades = [];
+    this.props.trades.map(trade => {
+      trade.read = true;
+      newTrades = [...newTrades, trade];
+      return newTrades;
+    });
+    console.log(newTrades);
+    database
+      .collection('users')
+      .doc(this.props.token)
+      .update({
+        trades: newTrades,
+      });
+  };
+
   render() {
     const {classes} = this.props;
 
@@ -37,7 +65,7 @@ class Messages extends Component {
         <Badge
           badgeContent={this.state.counter}
           color="secondary"
-          onClick={() => this.props.history.push('/messages')}>
+          onClick={this.handleClick}>
           <MailIcon />
         </Badge>
       </IconButton>
@@ -47,6 +75,7 @@ class Messages extends Component {
 // trade box here
 // classes here
 
-export default connect(mapStateToProps)(
-  withRouter(withStyles(styles)(Messages)),
-);
+export default connect(
+  mapStateToProps,
+  {updateTrades},
+)(withRouter(withStyles(styles)(Messages)));
