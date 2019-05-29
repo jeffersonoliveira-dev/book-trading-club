@@ -18,7 +18,6 @@ class Messages extends Component {
         newTrades = [...newTrades, trade];
         return newTrades;
       });
-      console.log(newTrades);
       database
         .collection('users')
         .doc(this.props.token)
@@ -29,7 +28,7 @@ class Messages extends Component {
   }
   render() {
     let trades = this.props.trades.map((trade, index) => {
-      if (this.props.token === trade.userWish) {
+      if (this.props.token === trade.userWish && trade.status === 'request') {
         return <TradeBox trade={trade} key={index} />;
       }
     });
