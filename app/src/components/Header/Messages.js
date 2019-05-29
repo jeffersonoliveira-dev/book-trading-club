@@ -58,8 +58,6 @@ class Messages extends Component {
   };
 
   render() {
-    const {classes} = this.props;
-
     return (
       <IconButton color="inherit">
         <Badge
