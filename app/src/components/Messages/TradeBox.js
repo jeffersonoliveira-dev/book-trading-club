@@ -63,22 +63,30 @@ class TradeBox extends Component {
       .then(doc => this.setState({name: doc.data().name}));
   }
 
+  onAccept = event => {};
+
+  onReject = event => {};
+
   render() {
     console.log(this.props);
     return (
       <Container>
         <Flex>
           <Item>
-            {this.state.name} wants to trade his
+            {this.state.name} wants to trade his book:
             <br />
             {this.props.trade.bookOffer} <br />
-            for yours
+            for your book:
             <br />
             {this.props.trade.bookWish}
             <hr />
             <Buttons>
-              <AcceptButton href="#">accept</AcceptButton>
-              <RejectButton href="#">reject</RejectButton>
+              <AcceptButton onClick={this.onAccept} href="#">
+                accept
+              </AcceptButton>
+              <RejectButton onClick={this.onReject} href="#">
+                reject
+              </RejectButton>
             </Buttons>
           </Item>
         </Flex>
