@@ -8,5 +8,4 @@
 
 // todo
 
-- notification page working > notification drop on desk and swittch page on mobile
-- make trade request show at notification/messages
+making web app look like mobile app
