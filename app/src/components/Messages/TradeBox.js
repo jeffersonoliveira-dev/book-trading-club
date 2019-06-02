@@ -63,9 +63,15 @@ class TradeBox extends Component {
       .then(doc => this.setState({name: doc.data().name}));
   }
 
-  onAccept = event => {};
+  onAccept = event => {
+    // search for database user and requester and do the trade with change status and update redux trades
+  };
 
-  onReject = event => {};
+  onReject = event => {
+    // search for database user and requester and change status and update redux trades
+  };
+
+  // probably revamping all the CSS to the app look more "organic"
 
   render() {
     console.log(this.props);
