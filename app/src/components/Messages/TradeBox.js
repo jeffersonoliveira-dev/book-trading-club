@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import database from '../../firebase';
 import firebase from 'firebase';
+import {connect} from 'react-redux';
+import {updateTrades} from '../../redux/actions/updateTrades';
 
 const Container = styled.div`
   position: relative;
@@ -65,35 +67,6 @@ class TradeBox extends Component {
   }
 
   onAccept = event => {
-    // database
-    //   .collection('users')
-    //   .doc(this.props.trade.userWish)
-    //   .update({
-    //     books: database.FieldValue.arrayUnion(this.props.bookOffer),
-    //   })
-    //   .then(
-    //     database
-    //       .collection('users')
-    //       .doc(this.props.trade.userWish)
-    //       .update({
-    //         books: database.FieldValue.arrayRemove(this.props.bookWish),
-    //       }),
-    //   );
-    // database
-    //   .collection('users')
-    //   .doc(this.props.trade.userOffer)
-    //   .update({
-    //     books: database.FieldValue.arrayUnion(this.props.bookWish),
-    //   })
-    //   .then(
-    //     database
-    //       .collection('users')
-    //       .doc(this.props.trade.userOffer)
-    //       .update({
-    //         books: database.FieldValue.arrayRemove(this.props.bookOffer),
-    //       }),
-    //   );
-
     database
       .collection('users')
       .doc(this.props.trade.userWish)
@@ -104,6 +77,14 @@ class TradeBox extends Component {
         books: firebase.firestore.FieldValue.arrayRemove(
           this.props.trade.bookWish,
         ),
+        trades: firebase.firestore.FieldValue.arrayRemove(this.props.trade),
+      })
+      .then(() => {
+        database
+          .collection('users')
+          .doc(this.props.trade.userWish)
+          .get()
+          .then(doc => this.props.updateTrades(doc.data().trades));
       });
 
     database
@@ -122,9 +103,26 @@ class TradeBox extends Component {
 
   onReject = event => {
     // change status
-    database.collection('users').doc(this.props.trade.userOffer); // current user
+    database
+      .collection('users')
+      .doc(this.props.trade.userOffer)
+      .update({
+        trades: firebase.firestore.FieldValue.arrayRemove(this.props.trade),
+      }) // current user
+      .then(() => {
+        database
+          .collection('users')
+          .doc(this.props.trade.userWish)
+          .get()
+          .then(doc => this.props.updateTrades(doc.data().trades));
+      });
 
-    database.collection('users').doc(this.props.trade.userOffer); // wish user
+    database
+      .collection('users')
+      .doc(this.props.trade.userWish)
+      .update({
+        trades: firebase.firestore.FieldValue.arrayRemove(this.props.trade),
+      }); // wish user
   };
 
   // probably revamping all the CSS to the app look more "organic"
@@ -157,4 +155,7 @@ class TradeBox extends Component {
   }
 }
 
-export default TradeBox;
+export default connect(
+  null,
+  {updateTrades},
+)(TradeBox);
