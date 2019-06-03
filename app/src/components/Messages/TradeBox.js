@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import database from '../../firebase';
+import firebase from 'firebase';
 
 const Container = styled.div`
   position: relative;
@@ -64,17 +65,72 @@ class TradeBox extends Component {
   }
 
   onAccept = event => {
-    // search for database user and requester and do the trade with change status and update redux trades
+    // database
+    //   .collection('users')
+    //   .doc(this.props.trade.userWish)
+    //   .update({
+    //     books: database.FieldValue.arrayUnion(this.props.bookOffer),
+    //   })
+    //   .then(
+    //     database
+    //       .collection('users')
+    //       .doc(this.props.trade.userWish)
+    //       .update({
+    //         books: database.FieldValue.arrayRemove(this.props.bookWish),
+    //       }),
+    //   );
+    // database
+    //   .collection('users')
+    //   .doc(this.props.trade.userOffer)
+    //   .update({
+    //     books: database.FieldValue.arrayUnion(this.props.bookWish),
+    //   })
+    //   .then(
+    //     database
+    //       .collection('users')
+    //       .doc(this.props.trade.userOffer)
+    //       .update({
+    //         books: database.FieldValue.arrayRemove(this.props.bookOffer),
+    //       }),
+    //   );
+
+    database
+      .collection('users')
+      .doc(this.props.trade.userWish)
+      .update({
+        books: firebase.firestore.FieldValue.arrayUnion(
+          this.props.trade.bookOffer,
+        ),
+        books: firebase.firestore.FieldValue.arrayRemove(
+          this.props.trade.bookWish,
+        ),
+      });
+
+    database
+      .collection('users')
+      .doc(this.props.trade.userOffer)
+      .update({
+        books: firebase.firestore.FieldValue.arrayUnion(
+          this.props.trade.bookWish,
+        ),
+        books: firebase.firestore.FieldValue.arrayRemove(
+          this.props.trade.bookOffer,
+        ),
+        trades: firebase.firestore.FieldValue.arrayRemove(this.props.trade),
+      });
   };
 
   onReject = event => {
-    // search for database user and requester and change status and update redux trades
+    // change status
+    database.collection('users').doc(this.props.trade.userOffer); // current user
+
+    database.collection('users').doc(this.props.trade.userOffer); // wish user
   };
 
   // probably revamping all the CSS to the app look more "organic"
 
   render() {
-    console.log(this.props);
+    console.log(this.props.userWish);
     return (
       <Container>
         <Flex>
