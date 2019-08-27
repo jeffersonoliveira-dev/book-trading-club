@@ -9,6 +9,8 @@
 .vscode/
 
 tags
+tags.lock
+tags.temp
 
 # testing
 /coverage
