@@ -17,5 +17,7 @@
     "url": "https://github.com/Cardbeat/book-trading-club/issues"
   },
   "homepage": "https://github.com/Cardbeat/book-trading-club#readme",
-  "dependencies": {}
+  "dependencies": {
+    "styled-components": "^4.3.2"
+  }
 }
